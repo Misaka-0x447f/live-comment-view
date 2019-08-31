@@ -14,7 +14,7 @@ export interface WatermelonIO {
   };
   raw: {
     room: object
-    cursor: "0"
+    offset: 0
     updRoomCount: number
     lottery: boolean
   };
