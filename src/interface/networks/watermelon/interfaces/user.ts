@@ -1,3 +1,5 @@
+import i18n from "../../../../utils/i18n";
+
 export class User {
   public d: {
     id: number;
@@ -57,9 +59,12 @@ export class User {
 
   public toString() {
     if (this.d.level === 0) {
-      if (this.d.type === 1) {
-        return "[]";
-      }
+      return `${() => {
+        return {
+          1: `[${i18n.room.operator}]`,
+          3: `[${i18n.room.streamer}]`,
+        }[this.d.type];
+      }}${this.d.name}`;
     }
   }
 
