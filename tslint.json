@@ -12,7 +12,6 @@
     ],
     "object-literal-sort-keys": false,
     "ordered-imports": false,
-    "trailing-comma": false,
     "no-console": false,
     "no-empty": false,
     "interface-name": false
