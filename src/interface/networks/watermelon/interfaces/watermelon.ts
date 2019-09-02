@@ -1,7 +1,8 @@
-import {fetchRoomInfo} from "./network";
+import {fetchLiveComment, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
 import {get} from "lodash-es";
 import {User} from "./user";
+import {AssertionError} from "assert";
 
 export class Watermelon {
   private config: {
@@ -58,10 +59,26 @@ export class Watermelon {
         isLive: d.room.status === 2,
         room: {
           ...this.status.room,
+          streamer: new User(d),
           title: d.room.title,
           activeUserCount: d.room.user_count,
         },
       },
     };
+  }
+
+  public async fetchComment() {
+    if (!this.status.lastRoomFetch) {
+      await this.fetchRoom();
+    }
+    const d = await fetchLiveComment(this.config.roomId, {offset: this.status.offset});
+    try {
+      assert.notNull([d.data, d.extra, d.cursor], "");
+    } catch {
+      if (get(d, "base_resp.status_code") !== 10038) {
+        throw new AssertionError("room information parse error", get(d, "base_resp.status_code"), 10038);
+      }
+    }
+    this.status.offset = d.extra.cursor;
   }
 }

@@ -1,9 +1,20 @@
 import {notStrictEqual, strictEqual} from "assert";
 import {isArray, isNil} from "lodash-es";
 
+/**
+ * @module assert
+ * @member eq
+ * @member notEq
+ * @member notNull
+ * @desc check if a or a group of value is null or undefined.
+ */
 export const assert = {
   eq: strictEqual,
   notEq: notStrictEqual,
+  /**
+   * @param actual          actual value
+   * @param message         message on error
+   */
   notNull: <T>(actual: T, message: string) => {
     if (isArray(actual)) {
       (actual as unknown as any[]).forEach((v) => {
