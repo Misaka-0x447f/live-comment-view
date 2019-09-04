@@ -1,10 +1,11 @@
 import {fetchLiveComment, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
 import {get, isUndefined} from "lodash-es";
-import {User} from "./user";
 import {AssertionError} from "assert";
 import {selectCase} from "../../../../utils/lang";
 import i18n from "../../../../utils/i18n";
+import {toUser} from "../conv/user";
+import {toChat} from "../conv/chat";
 
 export class Watermelon {
   private config: {
@@ -18,7 +19,7 @@ export class Watermelon {
     name: string
     room: {
       title: string
-      streamer?: User
+      streamer?: ReturnType<typeof toUser>
       activeUserCount: number,
     }
     offset: number,
@@ -61,7 +62,7 @@ export class Watermelon {
         isLive: d.room.status === 2,
         room: {
           ...this.status.room,
-          streamer: new User(d),
+          streamer: toUser(d),
           title: d.room.title,
           activeUserCount: d.room.user_count,
         },
@@ -92,6 +93,10 @@ export class Watermelon {
           ["VideoLivePresentMessage"],  // TODO: support gift
           ["VideoLivePresentEndTipMessage"],
           ["VideoLiveRoomAdMessage", () => i18n.comments.broadcast(v)],
+          ["VideoLiveChatMessage", () => i18n.comments.chat(toChat(v).content)],
+          ["VideoLiveMemberMessage", () => {
+
+          }],
         ],
       });
     });
