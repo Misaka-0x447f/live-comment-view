@@ -1,8 +1,10 @@
 import {fetchLiveComment, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
-import {get} from "lodash-es";
+import {get, isUndefined} from "lodash-es";
 import {User} from "./user";
 import {AssertionError} from "assert";
+import {selectCase} from "../../../../utils/lang";
+import i18n from "../../../../utils/i18n";
 
 export class Watermelon {
   private config: {
@@ -78,7 +80,20 @@ export class Watermelon {
       if (get(d, "base_resp.status_code") !== 10038) {
         throw new AssertionError("room information parse error", get(d, "base_resp.status_code"), 10038);
       }
+      return;
     }
     this.status.offset = d.extra.cursor;
+    const storage: string[] = [];
+    d.data.forEach((v) => {
+      selectCase({
+        exp: get(v, "common.method") as string | undefined,
+        case: [
+          [undefined],
+          ["VideoLivePresentMessage"],  // TODO: support gift
+          ["VideoLivePresentEndTipMessage"],
+          ["VideoLiveRoomAdMessage", () => i18n.comments.broadcast(v)],
+        ],
+      });
+    });
   }
 }
