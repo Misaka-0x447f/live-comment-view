@@ -1,15 +1,9 @@
-const {task, parallel} = require("just-scripts");
 const {spawn} = require("child_process");
 
-task("start", () => parallel("start/ng", "start/cors"));
-
-task("start/ng", async () => {
-  await step("ng serve");
-});
-
-task("start/cors", async () => {
-  await step("node ./cors-side.js");
-});
+const main = async () => {
+  step("ng serve").then();
+  step("node ./cors-side.js").then();
+};
 
 /**
  * @param cmd {string} The command you want to run
@@ -17,7 +11,7 @@ task("start/cors", async () => {
  * @param [opt.withWarn] {boolean} Show warn in stdio
  * @param [opt.env] {NodeJS.ProcessEnv} Environment key-value pairs
  */
-const step = (cmd, opt = {withWarn: process.env.CI === "true"}) => {
+const step = (cmd, opt = {withWarn: true}) => {
   const child = spawn(cmd, [], {
     shell: true,
     stdio: ["inherit", "inherit", opt.withWarn ? "inherit" : "ignore"],
@@ -37,3 +31,5 @@ const step = (cmd, opt = {withWarn: process.env.CI === "true"}) => {
     });
   });
 };
+
+main().then();

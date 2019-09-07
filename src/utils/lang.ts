@@ -15,5 +15,14 @@ export const selectCase = <T>(opt: { exp: T, def?: () => any, case: Array<[T] | 
   return;
 };
 
-export const nop: (...args: any[]) => any = () => undefined;
-export const bypass: (...args: any[]) => any = (...args) => args.length === 1 ? args[0] : args;
+type anyFunc = (...args: any[]) => any;
+
+export const nop: anyFunc = () => undefined;
+export const bypass: anyFunc = (...args) => args.length === 1 ? args[0] : args;
+
+export const recursivelyRun = (method: (...args: any[]) => Promise<any>, interval: number) => {
+  setTimeout(async () => {
+    await method();
+    recursivelyRun(method, interval);
+  }, interval);
+};

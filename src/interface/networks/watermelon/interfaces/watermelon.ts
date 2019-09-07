@@ -2,18 +2,13 @@ import {fetchLiveComment, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
 import {get, isNil} from "lodash-es";
 import {AssertionError} from "assert";
-import {selectCase} from "../../../../utils/lang";
+import {recursivelyRun, selectCase} from "../../../../utils/lang";
 import i18n from "../../../../utils/i18n";
 import {toUser} from "../conv/user";
 import {toChat} from "../conv/chat";
 
 export class Watermelon {
-  private config: {
-    roomId: number,
-  } = {
-    roomId: -1,
-  };
-  private status: {
+  public status: {
     isLive: boolean
     lastRoomFetch: boolean
     name: string
@@ -34,6 +29,14 @@ export class Watermelon {
     },
     offset: -1,
   };
+  public commentPool: Array<{
+    plainText: string,
+  }> = [];
+  private config: {
+    roomId: number,
+  } = {
+    roomId: -1,
+  };
   private raw: {
     room?: object,
   } = {
@@ -44,7 +47,12 @@ export class Watermelon {
     this.config = opt;
   }
 
-  public async fetchRoom() {
+  public startWatch() {
+    recursivelyRun(this.fetchRoom, 30000);
+    recursivelyRun(this.fetchComment, 5000);
+  }
+
+  public fetchRoom = async () => {
     this.status.lastRoomFetch = false;
     const d = await fetchRoomInfo(this.config.roomId);
     assert.eq(
@@ -70,7 +78,7 @@ export class Watermelon {
     };
   }
 
-  public async fetchComment() {
+  public fetchComment = async () => {
     if (!this.status.lastRoomFetch) {
       await this.fetchRoom();
     }
@@ -84,10 +92,9 @@ export class Watermelon {
       return;
     }
     this.status.offset = d.extra.cursor;
-    const storage: string[] = [];
     d.data.forEach((v) => {
       const username = toChat(v).user.name;
-      const r: string | undefined = selectCase({
+      const plainText: string | undefined = selectCase({
         exp: get(v, "common.method") as string | undefined,
         case: [
           [undefined],
@@ -104,10 +111,12 @@ export class Watermelon {
         ],
         def: () => JSON.stringify(toChat(v)),
       });
-      if (!isNil(r)) {
-        storage.push(r);
+      if (!isNil(plainText)) {
+        this.commentPool.push(
+          {
+            plainText,
+          });
       }
     });
-    return storage;
   }
 }
