@@ -1,18 +1,18 @@
 /**
  * alternative to native switch statement
  */
-export const selectCase = <T>(opt: { exp: T, def?: () => void, case: Array<[T] | [T, () => void]> }) => {
-  const r = opt.case.every((v) => {
+export const selectCase = <T>(opt: { exp: T, def?: () => any, case: Array<[T] | [T, () => any]> }) => {
+  for (const v of opt.case) {
     if (opt.exp === v[0]) {
       if (v[1]) {
-        v[1]();
+        return v[1]();
       }
     }
-    return opt.exp === v[0];
-  });
-  if (!r && opt.def) {
-    opt.def();
   }
+  if (opt.def) {
+    return opt.def();
+  }
+  return;
 };
 
 export const nop: (...args: any[]) => any = () => undefined;

@@ -1,6 +1,6 @@
 import {fetchLiveComment, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
-import {get, isUndefined} from "lodash-es";
+import {get, isNil} from "lodash-es";
 import {AssertionError} from "assert";
 import {selectCase} from "../../../../utils/lang";
 import i18n from "../../../../utils/i18n";
@@ -86,7 +86,8 @@ export class Watermelon {
     this.status.offset = d.extra.cursor;
     const storage: string[] = [];
     d.data.forEach((v) => {
-      selectCase({
+      const username = toChat(v).user.name;
+      const r: string | undefined = selectCase({
         exp: get(v, "common.method") as string | undefined,
         case: [
           [undefined],
@@ -94,11 +95,19 @@ export class Watermelon {
           ["VideoLivePresentEndTipMessage"],
           ["VideoLiveRoomAdMessage", () => i18n.comments.broadcast(v)],
           ["VideoLiveChatMessage", () => i18n.comments.chat(toChat(v).content)],
-          ["VideoLiveMemberMessage", () => {
-
-          }],
+          ["VideoLiveMemberMessage", () => i18n.comments.inbound(username)],
+          ["VideoLiveSocialMessage", () => i18n.comments.subscribed(username)],
+          ["VideoLiveJoinDiscipulusMessage", () => i18n.comments.favoured(username)],
+          ["VideoLiveControlMessage", () => i18n.comments.leave],
+          ["VideoLiveDiggMessage"], // System broadcast or what
+          ["VideoLiveDanmakuMessage", () => toChat(v).content],
         ],
+        def: () => JSON.stringify(toChat(v)),
       });
+      if (!isNil(r)) {
+        storage.push(r);
+      }
     });
+    return storage;
   }
 }
