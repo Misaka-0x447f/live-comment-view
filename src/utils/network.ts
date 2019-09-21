@@ -13,3 +13,10 @@ export const post = <T extends valueOf<typeof urls>>(url: T, opts: {
     json: opts.json,
   }).json();
 };
+
+export const get = <T extends valueOf<typeof urls>>(url: T, opts: {
+  args?: Parameters<T>;
+}): any => {
+  // @ts-ignore
+  return ky.get(CORSProxy + url(...opts.args)).json();
+};

@@ -13,6 +13,7 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "no-console": false,
+    "no-debugger": false,
     "no-empty": false,
     "interface-name": false
   },

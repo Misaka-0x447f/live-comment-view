@@ -129,7 +129,7 @@ export class Watermelon {
       this.status.lastRoomFetch = true;
       this.status.isLive = defaultTo(get(v, "cells.0.anchor.user_info.is_living"), false);
       this.status.room.id = get(v, "cells.0.anchor");
-      this.status.room.streamer = toUser(get(v, "cells.0"));
+      this.status.room.streamer = toUser(get(v, "cells.0.anchor"));
     }
   }
 }

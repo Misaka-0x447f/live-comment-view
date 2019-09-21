@@ -1,4 +1,4 @@
-import {post} from "../../../../utils/network";
+import {get, post} from "../../../../utils/network";
 
 export const urls = {
   room: () => "https://i.snssdk.com/videolive/room/enter?version_code=730&device_platform=android",
@@ -21,4 +21,4 @@ export const fetchLiveComment = (roomId: number, opts: { offset: number }) =>
   post(urls.liveComment, {args: [opts.offset, roomId]});
 
 export const fetchLocateRoom = (keyword: string) =>
-  post(urls.locateRoom, {args: [keyword]});
+  get(urls.locateRoom, {args: [keyword]});
