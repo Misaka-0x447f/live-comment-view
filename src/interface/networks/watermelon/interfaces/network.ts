@@ -1,17 +1,24 @@
 import {post} from "../../../../utils/network";
 
 export const urls = {
-  room: "https://i.snssdk.com/videolive/room/enter?version_code=730&device_platform=android",
+  room: () => "https://i.snssdk.com/videolive/room/enter?version_code=730&device_platform=android",
   liveComment: (roomId, offset) => `https://i.snssdk.com/videolive/im/get_msg?cursor=${offset}&room_id=${roomId}`,
+  locateRoom: (keyword) => "https://security.snssdk.com/video/app/search/live/" +
+    "?version_code=730&device_platform=android" +
+    `&format=json&keyword=${keyword}`,
 } as const;
 
 export const fetchRoomInfo = (roomId: number) =>
   post(urls.room, {
-    room_id: roomId,
-    version_code: 730,
-    device_platform: "android",
+    json: {
+      room_id: roomId,
+      version_code: 730,
+      device_platform: "android",
+    },
   });
 
 export const fetchLiveComment = (roomId: number, opts: { offset: number }) =>
-  // @ts-ignore
-  post(urls.liveComment(opts.offset, roomId));
+  post(urls.liveComment, {args: [opts.offset, roomId]});
+
+export const fetchLocateRoom = (keyword: string) =>
+  post(urls.locateRoom, {args: [keyword]});

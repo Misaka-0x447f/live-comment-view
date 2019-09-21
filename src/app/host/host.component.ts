@@ -8,7 +8,7 @@ import {Watermelon} from "../../interface/networks/watermelon/interfaces/waterme
 })
 export class HostComponent implements OnInit {
   private worker = new Watermelon({
-    roomId: 10000,
+    streamer: "宝蓝狼",
   });
   private JSON = JSON;
 

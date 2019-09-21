@@ -1,6 +1,6 @@
-import {fetchLiveComment, fetchRoomInfo} from "./network";
+import {fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
-import {get, isNil} from "lodash-es";
+import {defaultTo, get, isEmpty, isNil} from "lodash-es";
 import {AssertionError} from "assert";
 import {recursivelyRun, selectCase} from "../../../../utils/lang";
 import i18n from "../../../../utils/i18n";
@@ -11,9 +11,9 @@ export class Watermelon {
   public status: {
     isLive: boolean
     lastRoomFetch: boolean
-    name: string
     room: {
-      title: string
+      id?: number
+      title?: string
       streamer?: ReturnType<typeof toUser>
       activeUserCount: number,
     }
@@ -21,10 +21,7 @@ export class Watermelon {
   } = {
     isLive: false,
     lastRoomFetch: false,
-    name: "null",
     room: {
-      title: "null",
-      streamer: undefined,
       activeUserCount: -1,
     },
     offset: -1,
@@ -33,9 +30,7 @@ export class Watermelon {
     plainText: string,
   }> = [];
   private config: {
-    roomId: number,
-  } = {
-    roomId: -1,
+    streamer: string,
   };
   private raw: {
     room?: object,
@@ -47,14 +42,15 @@ export class Watermelon {
     this.config = opt;
   }
 
-  public startWatch() {
+  public async startWatch() {
+    await this.locateRoom();
     recursivelyRun(this.fetchRoom, 30000);
     recursivelyRun(this.fetchComment, 5000);
   }
 
   public fetchRoom = async () => {
     this.status.lastRoomFetch = false;
-    const d = await fetchRoomInfo(this.config.roomId);
+    const d = await fetchRoomInfo(this.status.room.id);
     assert.eq(
       get(d, "base_resp.status_code"), 0,
       "Room information request end with non-zero value",
@@ -82,7 +78,7 @@ export class Watermelon {
     if (!this.status.lastRoomFetch) {
       await this.fetchRoom();
     }
-    const d = await fetchLiveComment(this.config.roomId, {offset: this.status.offset});
+    const d = await fetchLiveComment(this.status.room.id, {offset: this.status.offset});
     try {
       assert.notNull([d.data, d.extra, d.cursor], "");
     } catch {
@@ -118,5 +114,22 @@ export class Watermelon {
           });
       }
     });
+  }
+
+  private locateRoom = async () => {
+    const d = await fetchLocateRoom(this.config.streamer);
+    assert.notNull(d.data, "invalid search result");
+    for (const v of d.data) {
+      if (v.block_type !== 0) {
+        continue;
+      }
+      if (isEmpty(v.cells)) {
+        return null;
+      }
+      this.status.lastRoomFetch = true;
+      this.status.isLive = defaultTo(get(v, "cells.0.anchor.user_info.is_living"), false);
+      this.status.room.id = get(v, "cells.0.anchor");
+      this.status.room.streamer = toUser(get(v, "cells.0"));
+    }
   }
 }
