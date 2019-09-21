@@ -2,7 +2,7 @@ import {fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
 import {defaultTo, get, isEmpty, isNil} from "lodash-es";
 import {AssertionError} from "assert";
-import {recursivelyRun, selectCase} from "../../../../utils/lang";
+import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
 import i18n from "../../../../utils/i18n";
 import {toUser} from "../conv/user";
 import {toChat} from "../conv/chat";
@@ -43,9 +43,12 @@ export class Watermelon {
   }
 
   public async startWatch() {
-    await this.locateRoom();
-    recursivelyRun(this.fetchRoom, 30000);
-    recursivelyRun(this.fetchComment, 5000);
+    while (!this.status.isLive) {
+      await this.locateRoom();
+      await sleep(60 * 1000);
+    }
+    recursivelyRun(this.fetchRoom, 30 * 1000);
+    recursivelyRun(this.fetchComment, 5 * 1000);
   }
 
   public fetchRoom = async () => {
@@ -128,7 +131,7 @@ export class Watermelon {
       }
       this.status.lastRoomFetch = true;
       this.status.isLive = defaultTo(get(v, "cells.0.anchor.user_info.is_living"), false);
-      this.status.room.id = get(v, "cells.0.anchor");
+      this.status.room.id = defaultTo(parseInt(get(v, "cells.0.anchor.room_id"), 10), undefined);
       this.status.room.streamer = toUser(get(v, "cells.0.anchor"));
     }
   }

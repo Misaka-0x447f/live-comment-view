@@ -1,5 +1,14 @@
 <div>
-  <span *ngFor="let v of worker.commentPool">
+  <div>
+    {{i18n.room.streamer}} / {{streamer}}
+  </div>
+  <div>
+    状态 /
+  </div>
+  <div>
+    {{JSON.stringify(worker.status)}}
+  </div>
+  <div *ngFor="let v of worker.commentPool">
     {{JSON.stringify(v)}}
-  </span>
+  </div>
 </div>
