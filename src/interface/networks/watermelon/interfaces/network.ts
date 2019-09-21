@@ -18,7 +18,7 @@ export const fetchRoomInfo = (roomId: number) =>
   });
 
 export const fetchLiveComment = (roomId: number, opts: { offset: number }) =>
-  post(urls.liveComment, {args: [roomId, opts.offset]});
+  get(urls.liveComment, {args: [roomId, opts.offset]});
 
 export const fetchLocateRoom = (keyword: string) =>
   get(urls.locateRoom, {args: [keyword]});

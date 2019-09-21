@@ -22,7 +22,7 @@ export class HostComponent implements OnInit {
     this.worker = new Watermelon({
       streamer: r,
     });
-    this.streamer = r;
+    this.streamer = decodeURI(r);
   }
 
   public ngOnInit() {

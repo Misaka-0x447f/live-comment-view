@@ -1,7 +1,6 @@
 import {fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
 import {defaultTo, get, isEmpty, isNil} from "lodash-es";
-import {AssertionError} from "assert";
 import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
 import i18n from "../../../../utils/i18n";
 import {toUser} from "../conv/user";
@@ -45,7 +44,9 @@ export class Watermelon {
   public async startWatch() {
     while (!this.status.isLive) {
       await this.locateRoom();
-      await sleep(60 * 1000);
+      if (!this.status.isLive) {
+        await sleep(60 * 1000);
+      }
     }
     recursivelyRun(this.fetchRoom, 30 * 1000);
     recursivelyRun(this.fetchComment, 5 * 1000);
@@ -58,7 +59,7 @@ export class Watermelon {
       get(d, "base_resp.status_code"), 0,
       "Room information request end with non-zero value",
     );
-    assert.notNull(
+    assert.notNil(
       [d.room, d.room.status, d.room.user_account],
       "Room information parse error",
     );
@@ -83,10 +84,12 @@ export class Watermelon {
     }
     const d = await fetchLiveComment(this.status.room.id, {offset: this.status.offset});
     try {
-      assert.notNull([d.data, d.extra, d.cursor], "");
+      assert.notNil([d.data, d.extra, get(d, "extra.cursor")], "unexpected data");
     } catch {
       if (get(d, "base_resp.status_code") !== 10038) {
-        throw new AssertionError("room information parse error", get(d, "base_resp.status_code"), 10038);
+        throw new Error(
+          `room parse error - unexpected data and not response with 10038: ${get(d, "base_resp.status_code")}`,
+        );
       }
       return;
     }
@@ -121,7 +124,7 @@ export class Watermelon {
 
   private locateRoom = async () => {
     const d = await fetchLocateRoom(this.config.streamer);
-    assert.notNull(d.data, "invalid search result");
+    assert.notNil(d.data, "invalid search result");
     for (const v of d.data) {
       if (v.block_type !== 0) {
         continue;

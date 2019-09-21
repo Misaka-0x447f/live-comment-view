@@ -22,10 +22,11 @@ type anyFunc = (...args: any[]) => any;
 export const nop: anyFunc = () => undefined;
 export const bypass: anyFunc = (...args) => args.length === 1 ? args[0] : args;
 
-export const recursivelyRun = (method: (...args: any[]) => Promise<any>, interval: number) => {
+export const recursivelyRun = async (method: (...args: any[]) => Promise<any>, interval: number) => {
+  await method();
   setTimeout(async () => {
     await method();
-    recursivelyRun(method, interval);
+    await recursivelyRun(method, interval);
   }, interval);
 };
 

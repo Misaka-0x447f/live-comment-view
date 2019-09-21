@@ -5,7 +5,7 @@ import {isArray, isNil} from "lodash-es";
  * @module assert
  * @member eq
  * @member notEq
- * @member notNull
+ * @member notNil
  * @desc check if a or a group of value is null or undefined.
  */
 export const assert = {
@@ -15,7 +15,7 @@ export const assert = {
    * @param actual          actual value
    * @param message         message on error
    */
-  notNull: <T>(actual: T, message: string) => {
+  notNil: <T>(actual: T, message: string) => {
     if (isArray(actual)) {
       (actual as unknown as any[]).forEach((v) => {
         assert.eq(isNil(v), false, message);
