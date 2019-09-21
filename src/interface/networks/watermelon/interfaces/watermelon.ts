@@ -48,8 +48,8 @@ export class Watermelon {
         await sleep(60 * 1000);
       }
     }
-    recursivelyRun(this.fetchRoom, 30 * 1000);
-    recursivelyRun(this.fetchComment, 5 * 1000);
+    recursivelyRun(this.fetchRoom, 30 * 1000).then();
+    recursivelyRun(this.fetchComment, 5 * 1000).then();
   }
 
   public fetchRoom = async () => {
