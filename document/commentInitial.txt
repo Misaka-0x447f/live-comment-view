@@ -1,0 +1,28 @@
+GET https://i.snssdk.com/videolive/im/get_msg?cursor=0&room_id=6739392885151763212&version_code=730&device_platform=android HTTP/1.1
+Host: i.snssdk.com
+User-Agent: python-requests/2.22.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+
+HTTP/1.1 200 OK
+Server: Tengine
+Content-Type: application/json
+Connection: keep-alive
+Date: Sun, 22 Sep 2019 10:25:40 GMT
+Vary: Accept-Encoding
+tt_stable: 1
+X-TT-LOGID: 201909221825400100140470232E00A379
+Vary: Accept-Encoding
+server-timing: inner; dur=4
+x-tt-trace-host: 01f1008a09cdc718637b44700648b1b7518c8d5a17ddce4e77dac5dafe3b909424e424b0a02b76486bd2de4dd344a74ef8868aa91fa4a871db22659a84f0200802
+x-tt-trace-tag: id=00;cdn-cache=miss
+Vary: Accept-Encoding
+server-timing: cdn-cache;desc=MISS,edge;dur=0,origin;dur=33
+Via: cache12.cn1403[33,0]
+Timing-Allow-Origin: *
+EagleId: 7250182015691479403113910e
+Content-Length: 139
+
+{"data":[],"extra":{"cursor":"0_110","fetch_interval":1000,"now":"1569147940329"},"base_resp":{"status_code":0,"status_message":"success"}}
