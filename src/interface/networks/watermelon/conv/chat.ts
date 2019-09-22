@@ -8,6 +8,6 @@ export const toChat = (d: unknown) => {
   return {
     user: toUser(d),
     content,
-    isFiltered: !!exactlyFilterList.findIndex(content),
+    isFiltered: !!exactlyFilterList.indexOf(content),
   };
 };

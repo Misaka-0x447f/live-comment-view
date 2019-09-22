@@ -11,7 +11,7 @@ export class Watermelon {
     isLive: boolean
     lastRoomFetch: boolean
     room: {
-      id?: number
+      id?: string
       title?: string
       streamer?: ReturnType<typeof toUser>
       activeUserCount: number,
@@ -23,7 +23,7 @@ export class Watermelon {
     room: {
       activeUserCount: -1,
     },
-    offset: -1,
+    offset: 0,
   };
   public commentPool: Array<{
     plainText: string,
@@ -60,7 +60,7 @@ export class Watermelon {
       "Room information request end with non-zero value",
     );
     assert.notNil(
-      [d.room, d.room.status, d.room.user_account],
+      [d.room, d.room.status, d.room.user_count],
       "Room information parse error",
     );
     this.raw.room = d.room;
@@ -134,7 +134,7 @@ export class Watermelon {
       }
       this.status.lastRoomFetch = true;
       this.status.isLive = defaultTo(get(v, "cells.0.anchor.user_info.is_living"), false);
-      this.status.room.id = defaultTo(parseInt(get(v, "cells.0.anchor.room_id"), 10), undefined);
+      this.status.room.id = defaultTo(get(v, "cells.0.anchor.room_id"), undefined);
       this.status.room.streamer = toUser(get(v, "cells.0.anchor"));
     }
   }

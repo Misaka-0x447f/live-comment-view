@@ -6,18 +6,16 @@ import {defaultTo} from "lodash-es";
 const CORSProxy = "http://localhost:24112/";
 
 export const fetchRoom = <T extends valueOf<typeof urls>>(url: T, opts: {
-  roomId: number;
+  roomId: string;
 }): any => {
   // @ts-ignore
   return ky.post(CORSProxy + url(opts.roomId), {
     body: `room_id=${opts.roomId}&version_code=730&device_platform=android`,
-    // body: `{"room_id": ${opts.roomId}, "version_code": 730, "device_platform": "android"}`,
-    // json: {
-    //   room_id: opts.roomId,
-    //   version_code: 730,
-    //   device_platform: "android",
-    // },
-    headers: {"content-type": "application/x-www-form-urlencoded"},
+
+    headers: {
+      "content-type": "application/x-www-form-urlencoded",
+      "user-agent": "python-requests/2.22.0",
+    },
   }).json();
 };
 

@@ -9,10 +9,10 @@ export const urls = {
     `&format=json&keyword=${keyword}`,
 } as const;
 
-export const fetchRoomInfo = (roomId: number) =>
+export const fetchRoomInfo = (roomId: string) =>
   fetchRoom(urls.room, {roomId});
 
-export const fetchLiveComment = (roomId: number, opts: { offset: number }) =>
+export const fetchLiveComment = (roomId: string, opts: { offset: number }) =>
   get(urls.liveComment, {args: [roomId, opts.offset]});
 
 export const fetchLocateRoom = (keyword: string) =>
