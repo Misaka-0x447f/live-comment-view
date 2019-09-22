@@ -25,9 +25,7 @@ export class Watermelon {
     },
     offset: 0,
   };
-  public commentPool: Array<{
-    plainText: string,
-  }> = [];
+  public commentPool: any[] = [];
   private config: {
     streamer: string,
   };
@@ -96,14 +94,14 @@ export class Watermelon {
     this.status.offset = d.extra.cursor;
     d.data.forEach((v) => {
       const username = toChat(v).user.name;
-      const plainText: string | undefined = selectCase({
+      const result: any = selectCase({
         exp: get(v, "common.method") as string | undefined,
         case: [
           [undefined],
           ["VideoLivePresentMessage"],  // TODO: support gift
           ["VideoLivePresentEndTipMessage"],
           ["VideoLiveRoomAdMessage", () => i18n.comments.broadcast(v)],
-          ["VideoLiveChatMessage", () => i18n.comments.chat(toChat(v).content)],
+          ["VideoLiveChatMessage", () => i18n.comments.chat(toChat(v))],
           ["VideoLiveMemberMessage", () => i18n.comments.inbound(username)],
           ["VideoLiveSocialMessage", () => i18n.comments.subscribed(username)],
           ["VideoLiveJoinDiscipulusMessage", () => i18n.comments.favoured(username)],
@@ -111,13 +109,10 @@ export class Watermelon {
           ["VideoLiveDiggMessage"], // System broadcast or what
           ["VideoLiveDanmakuMessage", () => toChat(v).content],
         ],
-        def: () => JSON.stringify(toChat(v)),
+        def: () => toChat(v),
       });
-      if (!isNil(plainText)) {
-        this.commentPool.push(
-          {
-            plainText,
-          });
+      if (!isNil(result)) {
+        this.commentPool.push(result);
       }
     });
   }
