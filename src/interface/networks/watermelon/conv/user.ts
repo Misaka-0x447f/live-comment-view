@@ -1,4 +1,5 @@
 import i18n from "../../../../utils/i18n";
+import {selectCase} from "../../../../utils/lang";
 
 export const toUser = (d: any) => {
   let r: Partial<{
@@ -9,6 +10,7 @@ export const toUser = (d: any) => {
     type: number;
     block: boolean;
     mute: boolean;
+    prefix?: string;
   }> = {};
 
   const giveBasicInfo = (obj: any) => {
@@ -50,20 +52,15 @@ export const toUser = (d: any) => {
   if (!r.type) {
     r.type = 0;
   }
+  if (r.level === 0) {
+    r.prefix = selectCase({
+      exp: r.type,
+      case: [
+        [1, () => i18n.room.operator],
+        [3, () => i18n.room.streamer],
+      ],
+    });
+  }
 
-  const toString = () => {
-    if (r.level === 0) {
-      return `${() => {
-        return {
-          1: `[${i18n.room.operator}]`,
-          3: `[${i18n.room.streamer}]`,
-        }[r.type];
-      }}${r.name}`;
-    }
-  };
-
-  return {
-    ...r,
-    plainText: toString(),
-  };
+  return r;
 };

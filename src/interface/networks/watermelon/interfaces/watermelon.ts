@@ -1,8 +1,7 @@
 import {fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
 import {defaultTo, get, isEmpty, isNil} from "lodash-es";
-import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
-import i18n from "../../../../utils/i18n";
+import {recursivelyRun, sleep} from "../../../../utils/lang";
 import {toUser} from "../conv/user";
 import {toChat} from "../conv/chat";
 
@@ -25,7 +24,7 @@ export class Watermelon {
     },
     offset: 0,
   };
-  public commentPool: any[] = [];
+  public commentPool: Array<ReturnType<typeof toChat>> = [];
   private config: {
     streamer: string,
   };
@@ -47,7 +46,7 @@ export class Watermelon {
       }
     }
     recursivelyRun(this.fetchRoom, 30 * 1000).then();
-    recursivelyRun(this.fetchComment, 5 * 1000).then();
+    recursivelyRun(this.fetchComment, 1000).then();
   }
 
   public fetchRoom = async () => {
@@ -93,26 +92,10 @@ export class Watermelon {
     }
     this.status.offset = d.extra.cursor;
     d.data.forEach((v) => {
-      const username = toChat(v).user.name;
-      const result: any = selectCase({
-        exp: get(v, "common.method") as string | undefined,
-        case: [
-          [undefined],
-          ["VideoLivePresentMessage"],  // TODO: support gift
-          ["VideoLivePresentEndTipMessage"],
-          ["VideoLiveRoomAdMessage", () => i18n.comments.broadcast(v)],
-          ["VideoLiveChatMessage", () => i18n.comments.chat(toChat(v))],
-          ["VideoLiveMemberMessage", () => i18n.comments.inbound(username)],
-          ["VideoLiveSocialMessage", () => i18n.comments.subscribed(username)],
-          ["VideoLiveJoinDiscipulusMessage", () => i18n.comments.favoured(username)],
-          ["VideoLiveControlMessage", () => i18n.comments.leave],
-          ["VideoLiveDiggMessage"], // System broadcast or what
-          ["VideoLiveDanmakuMessage", () => toChat(v).content],
-        ],
-        def: () => toChat(v),
-      });
-      if (!isNil(result)) {
-        this.commentPool.push(result);
+      if (!isNil(toChat(v))) {
+        this.commentPool.push({
+          ...toChat(v),
+        });
       }
     });
   }
