@@ -1,0 +1,4 @@
+<div>
+  isLive {{worker.status.isLive}}
+</div>
+<ng-chat *ngFor="let v of worker.commentPool" [chat]="v"></ng-chat>
