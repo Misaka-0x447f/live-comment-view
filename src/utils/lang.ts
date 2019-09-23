@@ -1,7 +1,7 @@
 /**
  * alternative to native switch statement
  */
-import {isNull} from "lodash-es";
+import {isNull, isUndefined} from "lodash-es";
 
 export const selectCase = <T>(opt: { exp: T, def?: () => any, case: Array<[T] | [T, () => any]> }) => {
   for (const v of opt.case) {
@@ -41,6 +41,17 @@ export const sleep = async (time: number) => {
  */
 export const regexMatch = (str: string, regexp: RegExp, index: number = 1) => {
   const r = str.match(regexp);
-  if (isNull(r)) { return null; }
+  if (isNull(r)) {
+    return null;
+  }
   return r[index];
+};
+
+export const includeAll = (target: object, propertyKeys: PropertyKey[]) => {
+  for (const v of propertyKeys) {
+    if (!Reflect.has(target, v) || isUndefined(target[v])) {
+      return false;
+    }
+  }
+  return true;
 };

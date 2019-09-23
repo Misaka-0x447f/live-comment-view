@@ -1,18 +1,34 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
 
 import {AppComponent} from "./app.component";
-import {HostComponent} from "./host/host.component";
-import {ChatComponent} from "./chat/chat.component";
+import {DemoComponent} from "./demo/demo.component";
+import {ViewComponent} from "./view/view.component";
+
+import {ChatComponent} from "../component/chat/chat.component";
+
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
+const routes: Routes = [
+  {path: "view", component: ViewComponent},
+  {path: "demo", component: DemoComponent},
+  {path: "**", redirectTo: "/config"},
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HostComponent,
+    DemoComponent,
     ChatComponent,
+    ViewComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(
+      routes,
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent],

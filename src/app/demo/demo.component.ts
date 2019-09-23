@@ -5,10 +5,10 @@ import i18n from "../../utils/i18n";
 
 @Component({
   selector: "ng-host",
-  templateUrl: "./host.component.html",
-  styleUrls: ["./host.component.styl"],
+  templateUrl: "./demo.component.html",
+  styleUrls: ["./demo.component.styl"],
 })
-export class HostComponent implements OnInit {
+export class DemoComponent implements OnInit {
   private worker: Watermelon;
   private JSON = JSON;
   private i18n = i18n;

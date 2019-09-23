@@ -104,10 +104,10 @@
     "@angular-devkit/core" "8.2.2"
     rxjs "6.4.0"
 
-"@angular/animations@~8.2.0":
-  version "8.2.4"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-8.2.4.tgz#0780f9cb98a2ec3d43d80c42976420597932dc36"
-  integrity sha512-EHTvA5ugoFiYVwi9SyozJORWcBhUIn06VbNa2uhQQdOUrsbvKBCF0PpH2nZZJz7wsQ6Pyonizee8vgea8/X59Q==
+"@angular/animations@^8.2.7":
+  version "8.2.7"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-8.2.7.tgz#643b673e705eb10f9a0f7199de0498d635d2314c"
+  integrity sha512-Q17WadeM0WnL97Qt2xGB4LonQrVEsefjC9kUYDOIzEY9Z70eBGfH2ak6rBzlWpDmxCpIFOxEDQy/Dd3z7/nr6g==
   dependencies:
     tslib "^1.9.0"
 
@@ -183,6 +183,13 @@
   version "8.2.4"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-8.2.4.tgz#84fb765bfd93e0d235699f962560137934c82c4d"
   integrity sha512-8yoplzpNgZOMMluvxiyc0hwVs6WJBkHJoM8Dy3pb0UIRfYO1IDwrEEV6bbn25oORW59q7tUO3GD1yXwuJCswPQ==
+
+"@angular/material@^8.2.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-8.2.0.tgz#a99bbe5347ef0197bc4ad29228798608a62308aa"
+  integrity sha512-4EY3QilEXS09+10WYwkunEltReuPDByb2ulWw2FLG3wpmMpCp4p6AKY9v9xS3sGvb708S0b9vlfLG4FbepmBbA==
+  dependencies:
+    tslib "^1.7.1"
 
 "@angular/platform-browser-dynamic@~8.2.0":
   version "8.2.4"
@@ -2637,6 +2644,11 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.2.tgz#6f0952605d0140c1cfdb138ed005775b92d67b02"
   integrity sha512-IItsdsea19BoLC7ELy13q1iJFNmd7ofZH5+X/pJr90/nRoPEX0DJo1dHDbgtYWOhJhcCgMDTOw84RZ72q6lB+Q==
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
 
 handle-thing@^2.0.0:
   version "2.0.0"
@@ -6022,7 +6034,7 @@ ts-node@~7.0.0:
     source-map-support "^0.5.6"
     yn "^2.0.0"
 
-tslib@1.10.0, tslib@^1.10.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@1.10.0, tslib@^1.10.0, tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
