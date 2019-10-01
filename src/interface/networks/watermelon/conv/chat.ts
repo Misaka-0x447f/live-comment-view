@@ -6,9 +6,10 @@ export const exactlyFilterList: string[] = [];
 
 export const toChat = (d: unknown) => {
   const content = get(d, "extra.content");
-  const typeRaw = get(d, "extra.action");
-  const type = selectCase({
-    exp: parseInt(typeRaw, 10),
+  const typeRaw = get(d, "common.method");
+  const action = get(d, "extra.action");
+  const method = typeRaw === "VideoLiveMemberMessage" ? selectCase({
+    exp: parseInt(action, 10),
     case: [
       [1, () => "Inbound"],
       [3, () => "Banned"],
@@ -17,9 +18,9 @@ export const toChat = (d: unknown) => {
       [12, () => "Subscribed"],
     ],
     def: () => `Undefined ${typeRaw}`,
-  });
+  }) : get(d, "common.method");
   return {
-    method: typeRaw === "VideoLiveMemberMessage" ? type as ExtraMethods : get(d, "common.method") as APIMethods,
+    method,
     user: toUser(d),
     content: content as string,
     isFiltered: exactlyFilterList.indexOf(content) !== -1,

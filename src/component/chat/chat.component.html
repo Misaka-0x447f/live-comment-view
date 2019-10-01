@@ -3,6 +3,8 @@
   <span class="comment">{{JSON.stringify(message)}}</span>
 </div>
 <ng-template #noMatch>
-  {{i18n.comments.notRegistered(message.user, message.text, message.type)}}
-  <span class="comment">{{JSON.stringify(message)}}</span>
+  <div>
+    {{i18n.comments.notRegistered(message.user, message.text, message.type)}}
+    <span class="comment">{{JSON.stringify(message)}}</span>
+  </div>
 </ng-template>
