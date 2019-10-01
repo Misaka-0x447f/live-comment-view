@@ -40,8 +40,8 @@ export type APIMethods =
   | "VideoLiveControlMessage"         // streamer leave
   | "VideoLiveDiggMessage"            // [ignore] broadcast
   | "VideoLiveDanmakuMessage"         // unknown type danmaku
-  | "VideoLiveNoticeMessage";         // [ignore] broadcast
-
+  | "VideoLiveNoticeMessage"          // [ignore] broadcast
+  | "VideoLiveNoticeMessage";         // unknown
 export type ExtraMethods =
   "Inbound"
   | "Banned"
