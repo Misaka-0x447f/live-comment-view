@@ -9,8 +9,8 @@ export const i18n = {
   },
   comments: {
     VideoLiveNoticeMessage: nop,
-    present: (u) => `来自 ${u} 的礼物大量发生中`,
-    presentEnd: (u) => `来自 ${u} 的礼物发生完了`,
+    VideoLivePresentMessage: (u) => `来自 ${u} 的礼物大量发生中`,
+    VideoLivePresentEndTipMessage: (u) => `来自 ${u} 的礼物发生完了`,
     VideoLiveChatMessage: i18nCommentBypass,
     VideoLiveDanmakuMessage: i18nCommentBypass,
     Inbound: (u) => `${u} 的进站请求被接受。`,
