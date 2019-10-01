@@ -4,7 +4,7 @@ import {Component} from "@angular/core";
   selector: "ng-root",
   template: `
       <router-outlet></router-outlet>`,
-  styles: [],
+  styles: [`body {margin: 0; padding: 2em; background-color: black; color: white; min-height: 100vh}`],
 })
 export class AppComponent {
 }

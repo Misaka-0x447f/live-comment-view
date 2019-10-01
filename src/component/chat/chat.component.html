@@ -1,3 +1,8 @@
-<div *ngIf="message.type === 'VideoLiveChatMessage'">
-  {{message.user}} {{message.text}}
+<div *ngIf="!isNil(i18n.comments[message.type]); else noMatch">
+  {{i18n.comments[message.type](message.user, message.text)}}
+  <span class="comment">{{JSON.stringify(message)}}</span>
 </div>
+<ng-template #noMatch>
+  {{i18n.comments.notRegistered(message.user, message.text, message.type)}}
+  <span class="comment">{{JSON.stringify(message)}}</span>
+</ng-template>

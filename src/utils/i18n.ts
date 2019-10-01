@@ -1,4 +1,6 @@
-import {bypass, nop} from "./lang";
+import {nop} from "./lang";
+
+const i18nCommentBypass = (u, t) => `${u} ${t}`;
 
 export const i18n = {
   room: {
@@ -6,22 +8,20 @@ export const i18n = {
     operator: "房管",
   },
   comments: {
+    VideoLiveNoticeMessage: nop,
     present: (u) => `来自 ${u} 的礼物大量发生中`,
     presentEnd: (u) => `来自 ${u} 的礼物发生完了`,
-    broadcast: nop, // ads
-    chat: bypass,
-    danmaku: bypass,
-    inbound: (u) => `${u} 的进站请求被接受。`,
-    outbound: (u) => `${u} 已离站。`,
-    banned: (u) => `${u} 已遭到封锁。`,
-    unbanned: (u) => `${u} 的封锁已解除。`,
-    elevated: (u) => `${u} 的权限已提升。`,
-    subscribed: (u) => `${u} 正在监听你的直播。`,
-    favoured: (u) => `${u} 已将你设为最爱。`,
-    notRegistered: (u, type) => `${u} 执行了动作类型: ${type}`,
-    message: bypass,
+    VideoLiveChatMessage: i18nCommentBypass,
+    VideoLiveDanmakuMessage: i18nCommentBypass,
+    Inbound: (u) => `${u} 的进站请求被接受。`,
+    Banned: (u) => `${u} 已遭到封锁。`,
+    Unbanned: (u) => `${u} 的封锁已解除。`,
+    Elevated: (u) => `${u} 的权限已提升。`,
+    Subscribed: (u) => `${u} 正在监听你的直播。`,
+    VideoLiveJoinDiscipulusMessage: (u) => `${u} 已将你设为最爱。`,
+    notRegistered: (u, c, type) => `${u} 执行了动作类型: ${type}, 并说：${c}`,
     like: (u) => `${u} +1 了。`,
-    leave: "zzzzzzzzz",
+    VideoLiveControlMessage: "zzzzzzzzz",
     lottery: (u) => `(中奖消息) ${u}`,
   },
 };

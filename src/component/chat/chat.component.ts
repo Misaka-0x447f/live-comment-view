@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Watermelon} from "../../interface/networks/watermelon/interfaces/watermelon";
 import {ChatMethods} from "../../interface/networks/watermelon/conv/chat";
+import i18n from "../../utils/i18n";
+import {isNil} from "lodash-es";
 
 @Component({
   selector: "ng-chat",
@@ -9,8 +11,12 @@ import {ChatMethods} from "../../interface/networks/watermelon/conv/chat";
 })
 export class ChatComponent implements OnInit {
   @Input() private chat: Watermelon["commentPool"][0];
+  private i18n = i18n;
+  private isNil = isNil;
+  private JSON = JSON;
+
   private message: {
-    type: ChatMethods
+    type: ChatMethods;
     user: string;
     text: string;
   };

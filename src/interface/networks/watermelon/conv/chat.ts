@@ -1,19 +1,34 @@
 import {get} from "lodash-es";
 import {toUser} from "./user";
+import {selectCase} from "../../../../utils/lang";
 
 export const exactlyFilterList: string[] = [];
 
 export const toChat = (d: unknown) => {
   const content = get(d, "extra.content");
+  const typeRaw = get(d, "extra.action");
+  const type = selectCase({
+    exp: parseInt(typeRaw, 10),
+    case: [
+      [1, () => "Inbound"],
+      [3, () => "Banned"],
+      [4, () => "Unbanned"],
+      [5, () => "Elevated"],
+      [12, () => "Subscribed"],
+    ],
+    def: () => `Undefined ${typeRaw}`,
+  });
   return {
-    method: get(d, "common.method") as ChatMethods,
+    method: typeRaw === "VideoLiveMemberMessage" ? type as ExtraMethods : get(d, "common.method") as APIMethods,
     user: toUser(d),
     content: content as string,
     isFiltered: exactlyFilterList.indexOf(content) !== -1,
   };
 };
 
-export type ChatMethods =
+export type ChatMethods = APIMethods | ExtraMethods;
+
+export type APIMethods =
   "VideoLivePresentMessage"           // TODO: support gift
   | "VideoLivePresentEndTipMessage"
   | "VideoLiveRoomAdMessage"
@@ -25,3 +40,10 @@ export type ChatMethods =
   | "VideoLiveDiggMessage"            // [ignore] broadcast
   | "VideoLiveDanmakuMessage"         // unknown type danmaku
   | "VideoLiveNoticeMessage";         // [ignore] broadcast
+
+export type ExtraMethods =
+  "Inbound"
+  | "Banned"
+  | "Unbanned"
+  | "Elevated"
+  | "Subscribed";
