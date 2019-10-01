@@ -4,7 +4,7 @@
       <ng-chat *ngIf="v.method === 'VideoLiveChatMessage'" [chat]="v"></ng-chat>
     </div>
   </div>
-  <div class="comment-box">
+  <div class="comment-box align-r">
     <div *ngFor="let v of worker.commentPool">
       <ng-chat *ngIf="v.method !== 'VideoLiveChatMessage'" [chat]="v"></ng-chat>
     </div>

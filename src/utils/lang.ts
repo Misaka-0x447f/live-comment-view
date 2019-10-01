@@ -23,11 +23,12 @@ export const nop: anyFunc = () => undefined;
 export const bypass: anyFunc = (...args) => args.length === 1 ? args[0] : args;
 
 export const recursivelyRun = async (method: (...args: any[]) => Promise<any>, interval: number) => {
-  await method();
-  setTimeout(async () => {
+  try {
     await method();
-    await recursivelyRun(method, interval);
-  }, interval);
+    setTimeout( () => {
+      recursivelyRun(method, interval).then();
+    }, interval);
+  } catch {}
 };
 
 export const sleep = async (time: number) => {
