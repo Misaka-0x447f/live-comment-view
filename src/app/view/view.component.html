@@ -1,4 +1,12 @@
-<div>
-  isLive {{worker.status.isLive}}
+<div class="comment-box-container">
+  <div class="comment-box">
+    <div *ngFor="let v of worker.commentPool">
+      <ng-chat *ngIf="v.method === 'VideoLiveChatMessage'" [chat]="v"></ng-chat>
+    </div>
+  </div>
+  <div class="comment-box">
+    <div *ngFor="let v of worker.commentPool">
+      <ng-chat *ngIf="v.method !== 'VideoLiveChatMessage'" [chat]="v"></ng-chat>
+    </div>
+  </div>
 </div>
-<ng-chat *ngFor="let v of worker.commentPool" [chat]="v"></ng-chat>
