@@ -1,0 +1,764 @@
+{
+  "gift_info": [
+    {
+      "id": 10001,
+      "type": 5,
+      "name": "西瓜",
+      "diamond_count": 0,
+      "meta": {
+        "combo": true,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a60029b17c36273266",
+          "url": [
+            "http://p1.pstatp.com/obj/78a60029b17c36273266",
+            "http://p2.pstatp.com/obj/78a60029b17c36273266",
+            "http://p3.pstatp.com/obj/78a60029b17c36273266"
+          ]
+        },
+        "image": {
+          "uri": "78a60029b17c36273266",
+          "url": [
+            "http://p1.pstatp.com/obj/78a60029b17c36273266",
+            "http://p2.pstatp.com/obj/78a60029b17c36273266",
+            "http://p3.pstatp.com/obj/78a60029b17c36273266"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 0,
+        "md5": "",
+        "mp4_resource_uri": "",
+        "mp4_md5": ""
+      },
+      "status": 3,
+      "priority": 0,
+      "describe": "吃个西瓜",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 100,
+      "label_icon": "http://p1.pstatp.com/obj/78a7008565d41d7728d9",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 0
+    },
+    {
+      "id": 585,
+      "type": 1,
+      "name": "吃口药",
+      "diamond_count": 1,
+      "meta": {
+        "combo": true,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "2d04c00047ddf99fe6682",
+          "url": [
+            "http://p1.pstatp.com/obj/2d04c00047ddf99fe6682",
+            "http://p2.pstatp.com/obj/2d04c00047ddf99fe6682",
+            "http://p3.pstatp.com/obj/2d04c00047ddf99fe6682"
+          ]
+        },
+        "image": {
+          "uri": "2d04c00047ddf99fe6682",
+          "url": [
+            "http://p1.pstatp.com/obj/2d04c00047ddf99fe6682",
+            "http://p2.pstatp.com/obj/2d04c00047ddf99fe6682",
+            "http://p3.pstatp.com/obj/2d04c00047ddf99fe6682"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 2,
+        "md5": "",
+        "mp4_resource_uri": "",
+        "mp4_md5": ""
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "赶快吃口药",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "http://p1.pstatp.com/obj/78a80068240eda0fc28e",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 1
+    },
+    {
+      "id": 587,
+      "type": 1,
+      "name": "西瓜炸弹",
+      "diamond_count": 5,
+      "meta": {
+        "combo": true,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a700d477d242162770",
+          "url": [
+            "http://p1.pstatp.com/obj/78a700d477d242162770",
+            "http://p2.pstatp.com/obj/78a700d477d242162770",
+            "http://p3.pstatp.com/obj/78a700d477d242162770"
+          ]
+        },
+        "image": {
+          "uri": "78a700d477d242162770",
+          "url": [
+            "http://p1.pstatp.com/obj/78a700d477d242162770",
+            "http://p2.pstatp.com/obj/78a700d477d242162770",
+            "http://p3.pstatp.com/obj/78a700d477d242162770"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 2,
+        "md5": "",
+        "mp4_resource_uri": "",
+        "mp4_md5": ""
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "boom！boom！",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "http://p1.pstatp.com/obj/78a4008c0086a847d15b",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 1
+    },
+    {
+      "id": 755,
+      "type": 2,
+      "name": "飞机",
+      "diamond_count": 9999,
+      "meta": {
+        "combo": false,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a6005175a5ac90a26f",
+          "url": [
+            "http://p1.pstatp.com/obj/78a6005175a5ac90a26f",
+            "http://p2.pstatp.com/obj/78a6005175a5ac90a26f",
+            "http://p3.pstatp.com/obj/78a6005175a5ac90a26f"
+          ]
+        },
+        "image": {
+          "uri": "78a6005175a5ac90a26f",
+          "url": [
+            "http://p1.pstatp.com/obj/78a6005175a5ac90a26f",
+            "http://p2.pstatp.com/obj/78a6005175a5ac90a26f",
+            "http://p3.pstatp.com/obj/78a6005175a5ac90a26f"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 4,
+        "md5": "",
+        "mp4_resource_uri": "https://sf1-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20190621/0898a7207d467208f537dbbb47cc405b",
+        "mp4_md5": "0898a7207d467208f537dbbb47cc405b"
+      },
+      "status": 1,
+      "priority": 0,
+      "describe": "霸气高飞",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 2
+    },
+    {
+      "id": 588,
+      "type": 1,
+      "name": "MVP",
+      "diamond_count": 2,
+      "meta": {
+        "combo": true,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "2d04a000479b3727c60b7",
+          "url": [
+            "http://p1.pstatp.com/obj/2d04a000479b3727c60b7",
+            "http://p2.pstatp.com/obj/2d04a000479b3727c60b7",
+            "http://p3.pstatp.com/obj/2d04a000479b3727c60b7"
+          ]
+        },
+        "image": {
+          "uri": "2d04a000479b3727c60b7",
+          "url": [
+            "http://p1.pstatp.com/obj/2d04a000479b3727c60b7",
+            "http://p2.pstatp.com/obj/2d04a000479b3727c60b7",
+            "http://p3.pstatp.com/obj/2d04a000479b3727c60b7"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 2,
+        "md5": "",
+        "mp4_resource_uri": "",
+        "mp4_md5": ""
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "妥妥的MVP",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "http://p1.pstatp.com/obj/78a3009253635184b624",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 1
+    },
+    {
+      "id": 783,
+      "type": 1,
+      "name": "小星星",
+      "diamond_count": 60,
+      "meta": {
+        "combo": true,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a400dba9c1b45790d2",
+          "url": [
+            "http://p1.pstatp.com/obj/78a400dba9c1b45790d2",
+            "http://p2.pstatp.com/obj/78a400dba9c1b45790d2",
+            "http://p3.pstatp.com/obj/78a400dba9c1b45790d2"
+          ]
+        },
+        "image": {
+          "uri": "78a400dba9c1b45790d2",
+          "url": [
+            "http://p1.pstatp.com/obj/78a400dba9c1b45790d2",
+            "http://p2.pstatp.com/obj/78a400dba9c1b45790d2",
+            "http://p3.pstatp.com/obj/78a400dba9c1b45790d2"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "https://sf1-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20190910/901453d10c709602a380c3d7f83d828a",
+        "resource_type": 2,
+        "md5": "901453d10c709602a380c3d7f83d828a",
+        "mp4_resource_uri": "",
+        "mp4_md5": ""
+      },
+      "status": 1,
+      "priority": 0,
+      "describe": "小星星",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 1
+    },
+    {
+      "id": 358,
+      "type": 1,
+      "name": "比心",
+      "diamond_count": 99,
+      "meta": {
+        "combo": true,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a400dba9c3528dbd2a",
+          "url": [
+            "http://p1.pstatp.com/obj/78a400dba9c3528dbd2a",
+            "http://p2.pstatp.com/obj/78a400dba9c3528dbd2a",
+            "http://p3.pstatp.com/obj/78a400dba9c3528dbd2a"
+          ]
+        },
+        "image": {
+          "uri": "78a400dba9c3528dbd2a",
+          "url": [
+            "http://p1.pstatp.com/obj/78a400dba9c3528dbd2a",
+            "http://p2.pstatp.com/obj/78a400dba9c3528dbd2a",
+            "http://p3.pstatp.com/obj/78a400dba9c3528dbd2a"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 3,
+        "md5": "",
+        "mp4_resource_uri": "",
+        "mp4_md5": ""
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "比心哦",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 1
+    },
+    {
+      "id": 589,
+      "type": 2,
+      "name": "炫酷空投",
+      "diamond_count": 4999,
+      "meta": {
+        "combo": false,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a80068ac4ea57ad5ac",
+          "url": [
+            "http://p1.pstatp.com/obj/78a80068ac4ea57ad5ac",
+            "http://p2.pstatp.com/obj/78a80068ac4ea57ad5ac",
+            "http://p3.pstatp.com/obj/78a80068ac4ea57ad5ac"
+          ]
+        },
+        "image": {
+          "uri": "78a80068ac4ea57ad5ac",
+          "url": [
+            "http://p1.pstatp.com/obj/78a80068ac4ea57ad5ac",
+            "http://p2.pstatp.com/obj/78a80068ac4ea57ad5ac",
+            "http://p3.pstatp.com/obj/78a80068ac4ea57ad5ac"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 4,
+        "md5": "",
+        "mp4_resource_uri": "https://sf6-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20181213/625c9e34f65005b5726e23f2891276ef",
+        "mp4_md5": "625c9e34f65005b5726e23f2891276ef"
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "送主播一个吊炸天的空投",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 2
+    },
+    {
+      "id": 752,
+      "type": 2,
+      "name": "豪华火箭",
+      "diamond_count": 19999,
+      "meta": {
+        "combo": false,
+        "doodle": false,
+        "duration": "4000",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a800a0d9cf915a0ea8",
+          "url": [
+            "http://p1.pstatp.com/obj/78a800a0d9cf915a0ea8",
+            "http://p2.pstatp.com/obj/78a800a0d9cf915a0ea8",
+            "http://p3.pstatp.com/obj/78a800a0d9cf915a0ea8"
+          ]
+        },
+        "image": {
+          "uri": "78a800a0d9cf915a0ea8",
+          "url": [
+            "http://p1.pstatp.com/obj/78a800a0d9cf915a0ea8",
+            "http://p2.pstatp.com/obj/78a800a0d9cf915a0ea8",
+            "http://p3.pstatp.com/obj/78a800a0d9cf915a0ea8"
+          ]
+        },
+        "notify": true,
+        "resource_uri": "",
+        "resource_type": 4,
+        "md5": "",
+        "mp4_resource_uri": "https://sf1-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20190603/baac239fa4644842a1049dbca096c354",
+        "mp4_md5": "baac239fa4644842a1049dbca096c354"
+      },
+      "status": 1,
+      "priority": 0,
+      "describe": "威武霸气",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "http://p1.pstatp.com/obj/78a400c4ba9adc77ea8d",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 2
+    },
+    {
+      "id": 592,
+      "type": 1,
+      "name": "三级头",
+      "diamond_count": 10,
+      "meta": {
+        "combo": true,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a100963429b66df528",
+          "url": [
+            "http://p1.pstatp.com/obj/78a100963429b66df528",
+            "http://p2.pstatp.com/obj/78a100963429b66df528",
+            "http://p3.pstatp.com/obj/78a100963429b66df528"
+          ]
+        },
+        "image": {
+          "uri": "78a100963429b66df528",
+          "url": [
+            "http://p1.pstatp.com/obj/78a100963429b66df528",
+            "http://p2.pstatp.com/obj/78a100963429b66df528",
+            "http://p3.pstatp.com/obj/78a100963429b66df528"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 2,
+        "md5": "",
+        "mp4_resource_uri": "",
+        "mp4_md5": ""
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "炫酷三级头",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "http://p1.pstatp.com/obj/78a300925372ca5e0429",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 1
+    },
+    {
+      "id": 584,
+      "type": 1,
+      "name": "666",
+      "diamond_count": 6,
+      "meta": {
+        "combo": true,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "2d053000479f69cca2c71",
+          "url": [
+            "http://p1.pstatp.com/obj/2d053000479f69cca2c71",
+            "http://p2.pstatp.com/obj/2d053000479f69cca2c71",
+            "http://p3.pstatp.com/obj/2d053000479f69cca2c71"
+          ]
+        },
+        "image": {
+          "uri": "2d053000479f69cca2c71",
+          "url": [
+            "http://p1.pstatp.com/obj/2d053000479f69cca2c71",
+            "http://p2.pstatp.com/obj/2d053000479f69cca2c71",
+            "http://p3.pstatp.com/obj/2d053000479f69cca2c71"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 2,
+        "md5": "",
+        "mp4_resource_uri": "",
+        "mp4_md5": ""
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "老铁666",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "http://p1.pstatp.com/obj/78a70084db24b16ed9ac",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 1
+    },
+    {
+      "id": 530,
+      "type": 2,
+      "name": "放飞气球",
+      "diamond_count": 999,
+      "meta": {
+        "combo": false,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a30092700e97b946c5",
+          "url": [
+            "http://p1.pstatp.com/obj/78a30092700e97b946c5",
+            "http://p2.pstatp.com/obj/78a30092700e97b946c5",
+            "http://p3.pstatp.com/obj/78a30092700e97b946c5"
+          ]
+        },
+        "image": {
+          "uri": "78a30092700e97b946c5",
+          "url": [
+            "http://p1.pstatp.com/obj/78a30092700e97b946c5",
+            "http://p2.pstatp.com/obj/78a30092700e97b946c5",
+            "http://p3.pstatp.com/obj/78a30092700e97b946c5"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "https://sf6-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20181105/2edec789553d8cecc41a68d29a23eeb0",
+        "resource_type": 3,
+        "md5": "2edec789553d8cecc41a68d29a23eeb0",
+        "mp4_resource_uri": "https://sf1-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20181121/eb11af12dd30f381b6a5db4d0a41d076",
+        "mp4_md5": "eb11af12dd30f381b6a5db4d0a41d076"
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "为主播放飞漫天气球",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "",
+      "banner_left_color": "#FFFF0000",
+      "banner_right_color": "#FFFF358D",
+      "gift_type": 2
+    },
+    {
+      "id": 680,
+      "type": 2,
+      "name": "太空探险",
+      "diamond_count": 18888,
+      "meta": {
+        "combo": false,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a300a409e88e0dab84",
+          "url": [
+            "http://p1.pstatp.com/obj/78a300a409e88e0dab84",
+            "http://p2.pstatp.com/obj/78a300a409e88e0dab84",
+            "http://p3.pstatp.com/obj/78a300a409e88e0dab84"
+          ]
+        },
+        "image": {
+          "uri": "78a300a409e88e0dab84",
+          "url": [
+            "http://p1.pstatp.com/obj/78a300a409e88e0dab84",
+            "http://p2.pstatp.com/obj/78a300a409e88e0dab84",
+            "http://p3.pstatp.com/obj/78a300a409e88e0dab84"
+          ]
+        },
+        "notify": true,
+        "resource_uri": "",
+        "resource_type": 4,
+        "md5": "",
+        "mp4_resource_uri": "https://sf3-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20190119/a7a6924633e71887b7028041dabbc839",
+        "mp4_md5": "a7a6924633e71887b7028041dabbc839"
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "一起探险吧",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "http://p1.pstatp.com/obj/78a300a38769b43b8be0",
+      "banner_left_color": "#FF0047D1",
+      "banner_right_color": "#FF13A0D7",
+      "gift_type": 2
+    },
+    {
+      "id": 705,
+      "type": 1,
+      "name": "棒棒糖",
+      "diamond_count": 1,
+      "meta": {
+        "combo": true,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a300a85845881c0e7a",
+          "url": [
+            "http://p1.pstatp.com/obj/78a300a85845881c0e7a",
+            "http://p2.pstatp.com/obj/78a300a85845881c0e7a",
+            "http://p3.pstatp.com/obj/78a300a85845881c0e7a"
+          ]
+        },
+        "image": {
+          "uri": "78a300a85845881c0e7a",
+          "url": [
+            "http://p1.pstatp.com/obj/78a300a85845881c0e7a",
+            "http://p2.pstatp.com/obj/78a300a85845881c0e7a",
+            "http://p3.pstatp.com/obj/78a300a85845881c0e7a"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 2,
+        "md5": "",
+        "mp4_resource_uri": "https://sf3-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20190129/abfdcf93be071753dfa654c4d4705bdc",
+        "mp4_md5": "abfdcf93be071753dfa654c4d4705bdc"
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "甜蜜似糖",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "",
+      "banner_left_color": "",
+      "banner_right_color": "",
+      "gift_type": 1
+    },
+    {
+      "id": 591,
+      "type": 2,
+      "name": "时空穿梭",
+      "diamond_count": 1999,
+      "meta": {
+        "combo": false,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a300a44e6dccdc754a",
+          "url": [
+            "http://p1.pstatp.com/obj/78a300a44e6dccdc754a",
+            "http://p2.pstatp.com/obj/78a300a44e6dccdc754a",
+            "http://p3.pstatp.com/obj/78a300a44e6dccdc754a"
+          ]
+        },
+        "image": {
+          "uri": "78a300a44e6dccdc754a",
+          "url": [
+            "http://p1.pstatp.com/obj/78a300a44e6dccdc754a",
+            "http://p2.pstatp.com/obj/78a300a44e6dccdc754a",
+            "http://p3.pstatp.com/obj/78a300a44e6dccdc754a"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "",
+        "resource_type": 4,
+        "md5": "",
+        "mp4_resource_uri": "https://sf1-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20181213/a762a27813d93aeb7267aa6c55789a66",
+        "mp4_md5": "a762a27813d93aeb7267aa6c55789a66"
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "带主播穿梭时空",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "",
+      "banner_left_color": "#FF4513D0",
+      "banner_right_color": "#FFB02DEB",
+      "gift_type": 2
+    },
+    {
+      "id": 531,
+      "type": 2,
+      "name": "摩天轮",
+      "diamond_count": 2599,
+      "meta": {
+        "combo": false,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a300927022bc79f5ac",
+          "url": [
+            "http://p1.pstatp.com/obj/78a300927022bc79f5ac",
+            "http://p2.pstatp.com/obj/78a300927022bc79f5ac",
+            "http://p3.pstatp.com/obj/78a300927022bc79f5ac"
+          ]
+        },
+        "image": {
+          "uri": "78a300927022bc79f5ac",
+          "url": [
+            "http://p1.pstatp.com/obj/78a300927022bc79f5ac",
+            "http://p2.pstatp.com/obj/78a300927022bc79f5ac",
+            "http://p3.pstatp.com/obj/78a300927022bc79f5ac"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "https://sf3-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20181105/8c9cd6e30393722c5019378e12724161",
+        "resource_type": 3,
+        "md5": "8c9cd6e30393722c5019378e12724161",
+        "mp4_resource_uri": "https://sf6-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20181121/ff41ec82b22f1c0f518fcf4b5930a88e",
+        "mp4_md5": "ff41ec82b22f1c0f518fcf4b5930a88e"
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "送你梦幻摩天轮",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "",
+      "banner_left_color": "#FF4513D0",
+      "banner_right_color": "#FFB02DEB",
+      "gift_type": 2
+    },
+    {
+      "id": 528,
+      "type": 2,
+      "name": "西瓜星球",
+      "diamond_count": 4999,
+      "meta": {
+        "combo": false,
+        "doodle": false,
+        "duration": "0",
+        "for_linkmic": false,
+        "icon": {
+          "uri": "78a5008c295d2a3f49e5",
+          "url": [
+            "http://p1.pstatp.com/obj/78a5008c295d2a3f49e5",
+            "http://p2.pstatp.com/obj/78a5008c295d2a3f49e5",
+            "http://p3.pstatp.com/obj/78a5008c295d2a3f49e5"
+          ]
+        },
+        "image": {
+          "uri": "78a5008c295d2a3f49e5",
+          "url": [
+            "http://p1.pstatp.com/obj/78a5008c295d2a3f49e5",
+            "http://p2.pstatp.com/obj/78a5008c295d2a3f49e5",
+            "http://p3.pstatp.com/obj/78a5008c295d2a3f49e5"
+          ]
+        },
+        "notify": false,
+        "resource_uri": "https://sf1-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20181102/982f6d362782ec966592279834d36d4a",
+        "resource_type": 3,
+        "md5": "982f6d362782ec966592279834d36d4a",
+        "mp4_resource_uri": "https://sf6-dycdn-tos.pstatp.com/obj/live-gift-resource/live-gift-resource/20181106/a95988f628884dfbb530eb78cc1a2c1b",
+        "mp4_md5": "a95988f628884dfbb530eb78cc1a2c1b"
+      },
+      "status": 1,
+      "priority": 999,
+      "describe": "送给主播西瓜星球",
+      "is_doodle": false,
+      "live_id": 3,
+      "gold_coin_count": 0,
+      "label_icon": "",
+      "banner_left_color": "#FF4513D0",
+      "banner_right_color": "#FFB02DEB",
+      "gift_type": 2
+    }
+  ],
+  "digg_styles": [
+    {
+      "id": "101",
+      "url": "https://sf6-xgcdn-tos.pstatp.com/obj/xigua-live/livedigg-172532.png",
+      "name": "爱心"
+    }
+  ],
+  "special_brand_zip": "https://sf6-xgcdn-tos.pstatp.com/obj/xigua-live/fans_brand_v1.26.zip",
+  "base_resp": {
+    "status_code": 0,
+    "status_message": "success"
+  }
+}
