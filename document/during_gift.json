@@ -1,0 +1,95 @@
+{
+  "data": [
+    {
+      "common": {
+        "describe": "",
+        "monitor": 1,
+        "msg_id": "6743932595233082119",
+        "is_show_msg": true,
+        "create_time": "1570195637708",
+        "room_id": "6743892077920373515",
+        "method": "VideoLivePresentMessage"
+      },
+      "extra": {
+        "action": 0,
+        "user": {
+          "user_id": "3566437700475620",
+          "media_id": "0",
+          "name": "枣然呐",
+          "description": "",
+          "avatar_url": "http://sf3-ttcdn-tos.pstatp.com/img/tos-cn-i-0022/c2e504477a5946178a377171a2f81c9d~120x256.image",
+          "user_auth_info": "",
+          "ugc_publish_media_id": "0",
+          "user_verified": false,
+          "verified_content": "",
+          "follow": false,
+          "followers_count": "0",
+          "following_count": "0",
+          "device_id": "0",
+          "is_fans": false,
+          "user_auth_info_struct": null,
+          "live_activity_award": null,
+          "live_vip_info": null,
+          "total_income_diamond": "0",
+          "total_spend_diamond": "0",
+          "total_income_watermelon": "0",
+          "anchor_type": 0,
+          "author_info": {
+            "is_quality_author": false,
+            "quality_author_desc": "",
+            "video_total_count": "0",
+            "video_total_play_count": "0",
+            "video_total_share_count": "0"
+          },
+          "wenda_info": null
+        },
+        "member_count": 0,
+        "device_id": "0",
+        "content": "",
+        "digg_info": null,
+        "present_info": {
+          "count": 1,
+          "content": "",
+          "group_id": "1570195637",
+          "id": "705",
+          "repeat_count": 1,
+          "fan_piao": "17120857",
+          "watermelon": "28767822"
+        },
+        "present_end_info": null,
+        "followers_count": "0",
+        "lucky_money_info": null,
+        "user_room_auth_status": {
+          "is_silence": false,
+          "is_block": false,
+          "user_type": 0
+        },
+        "notice_type": 0,
+        "close_room": false,
+        "lottery_info": null,
+        "room_ad": [],
+        "red_packets": [],
+        "red_packet_rush_records": [],
+        "im_discipulus_info": null,
+        "notify_gift_msg": null,
+        "is_show_color": false,
+        "member_count_str": "",
+        "goods_order": null,
+        "rcmd_goods_id": "0",
+        "rcmd_coupon_id": "0",
+        "modify_room_result": null,
+        "message": null,
+        "replay_info": null
+      }
+    }
+  ],
+  "extra": {
+    "cursor": "6743938912785369864_1570195639005_1",
+    "fetch_interval": 1000,
+    "now": "1570195639005"
+  },
+  "base_resp": {
+    "status_code": 0,
+    "status_message": "success"
+  }
+}

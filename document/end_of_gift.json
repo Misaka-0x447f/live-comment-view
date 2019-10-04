@@ -1,0 +1,104 @@
+{
+  "data": [
+    {
+      "common": {
+        "describe": "",
+        "monitor": 0,
+        "msg_id": "6743941721308026381",
+        "is_show_msg": true,
+        "create_time": "1570196291797",
+        "room_id": "6743892077920373515",
+        "method": "VideoLivePresentEndTipMessage"
+      },
+      "extra": {
+        "action": 0,
+        "user": {
+          "user_id": "110291499953",
+          "media_id": "1644564222236684",
+          "name": "支凡霜人达",
+          "description": "",
+          "avatar_url": "http://sf3-ttcdn-tos.pstatp.com/img/mosaic-legacy/241f20010500b9264bab1~120x256.image",
+          "user_auth_info": "",
+          "ugc_publish_media_id": "0",
+          "user_verified": false,
+          "verified_content": "",
+          "follow": false,
+          "followers_count": "0",
+          "following_count": "0",
+          "device_id": "0",
+          "is_fans": false,
+          "user_auth_info_struct": null,
+          "live_activity_award": null,
+          "live_vip_info": null,
+          "total_income_diamond": "0",
+          "total_spend_diamond": "0",
+          "total_income_watermelon": "0",
+          "anchor_type": 0,
+          "author_info": {
+            "is_quality_author": false,
+            "quality_author_desc": "",
+            "video_total_count": "0",
+            "video_total_play_count": "0",
+            "video_total_share_count": "0"
+          },
+          "wenda_info": null
+        },
+        "member_count": 0,
+        "device_id": "0",
+        "content": "",
+        "digg_info": null,
+        "present_info": null,
+        "present_end_info": {
+          "count": 1,
+          "id": "587",
+          "group_id": "1570196287",
+          "fan_piao": "17123050"
+        },
+        "followers_count": "0",
+        "lucky_money_info": null,
+        "user_room_auth_status": {
+          "is_silence": false,
+          "is_block": false,
+          "user_type": 1
+        },
+        "notice_type": 0,
+        "close_room": false,
+        "lottery_info": null,
+        "room_ad": [],
+        "red_packets": [],
+        "red_packet_rush_records": [],
+        "im_discipulus_info": {
+          "is_show_discipulus_info": true,
+          "level": "13",
+          "stage": "3",
+          "discipulus_group_title": "阿童牧",
+          "is_show_color": true,
+          "is_show_special_brand": false,
+          "brand_url": "",
+          "level_color": "",
+          "title_color": "",
+          "shadow_color": "",
+          "big_brand_url": ""
+        },
+        "notify_gift_msg": null,
+        "is_show_color": false,
+        "member_count_str": "",
+        "goods_order": null,
+        "rcmd_goods_id": "0",
+        "rcmd_coupon_id": "0",
+        "modify_room_result": null,
+        "message": null,
+        "replay_info": null
+      }
+    }
+  ],
+  "extra": {
+    "cursor": "6743925454552795917_1570196300010_1",
+    "fetch_interval": 1000,
+    "now": "1570196300010"
+  },
+  "base_resp": {
+    "status_code": 0,
+    "status_message": "success"
+  }
+}
