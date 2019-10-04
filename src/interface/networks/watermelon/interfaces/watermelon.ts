@@ -1,31 +1,11 @@
-import {fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
+import {fetchGiftList, fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
-import {defaultTo, get, isEmpty, isNil} from "lodash-es";
+import {defaultTo, forIn, get, isEmpty, isUndefined} from "lodash-es";
 import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
-import {toUser} from "../conv/user";
+import {toUser} from "../util/user";
+import {ChatMethods, extraApis} from "../util/type";
 
 const poolSize = 10000;
-
-export type ChatMethods = APIMethods | ExtraMethods;
-export type APIMethods =
-  "VideoLivePresentMessage"           // TODO: support gift
-  | "VideoLivePresentEndTipMessage"
-  | "VideoLiveRoomAdMessage"
-  | "VideoLiveChatMessage"            // normal chat
-  | "VideoLiveMemberMessage"          // audience inbound
-  | "VideoLiveSocialMessage"          // audience subscribed
-  | "VideoLiveJoinDiscipulusMessage"  // audience favoured
-  | "VideoLiveControlMessage"         // streamer leave
-  | "VideoLiveDiggMessage"            // [ignore] broadcast
-  | "VideoLiveDanmakuMessage"         // unknown type danmaku
-  | "VideoLiveNoticeMessage"          // [ignore] broadcast
-  | "VideoLiveNoticeMessage";
-export type ExtraMethods =
-  "Inbound"
-  | "Banned"
-  | "Unbanned"
-  | "Elevated"
-  | "Subscribed";
 
 export class Watermelon {
   public status: {
@@ -39,6 +19,10 @@ export class Watermelon {
     }
     offset: number,
     exactlyFilterList: string[],
+    giftList?: Array<{
+      name: number,
+      weight: number,   // stands for amount of point used
+    }>,
   } = {
     isLive: false,
     lastRoomFetch: false,
@@ -48,7 +32,11 @@ export class Watermelon {
     offset: 0,
     exactlyFilterList: [],
   };
-  public commentPool: Array<ReturnType<Watermelon["pushChat"]>> = [];
+  public pool = {
+    comment: [] as Array<ReturnType<Watermelon["toChat"]>>,
+    gift: [] as Array<ReturnType<Watermelon["toGift"]>>,
+    other: [] as Array<ReturnType<Watermelon["toChat"]>>,
+  };
   private config: {
     streamer: string,
   };
@@ -116,15 +104,26 @@ export class Watermelon {
     }
     this.status.offset = d.extra.cursor;
     d.data.forEach((v) => {
-      if (!isNil(this.pushChat(v))) {
-        this.commentPool.unshift({
-          ...this.pushChat(v),
-        });
+      selectCase({
+        exp: this.typeOf(v),
+        case: [
+          [
+            ["VideoLiveChatMessage", "VideoLiveDanmakuMessage"],
+            () => this.pool.comment.unshift(this.toChat(v)),
+          ],
+          [
+            ["VideoLivePresentMessage", "VideoLivePresentEndTipMessage"],
+            () => this.pool.gift.unshift(this.toGift(v)),
+          ],
+        ],
+        def: () => this.pool.other.unshift(this.toChat(v)),
+      });
+    });
+    forIn(this.pool, (v) => {
+      while (v.length > poolSize) {
+        v.pop();
       }
     });
-    while (this.commentPool.length > poolSize) {
-      this.commentPool.pop();
-    }
   }
 
   private locateRoom = async () => {
@@ -144,27 +143,56 @@ export class Watermelon {
     }
   }
 
-  private pushChat = (d: unknown) => {
-    const content = get(d, "extra.content");
+  private typeOf = (d: any): ChatMethods => {
     const typeRaw = get(d, "common.method");
     const action = get(d, "extra.action");
-    const method = typeRaw === "VideoLiveMemberMessage" ? selectCase({
+    return typeRaw === "VideoLiveMemberMessage" ? selectCase({
       exp: parseInt(action, 10),
       case: [
-        [1, () => "Inbound"],
-        [3, () => "Banned"],
-        [4, () => "Unbanned"],
-        [5, () => "Elevated"],
-        [12, () => "Subscribed"],
+        [1, () => extraApis.inbound],
+        [3, () => extraApis.banned],
+        [4, () => extraApis.unbanned],
+        [5, () => extraApis.elevated],
+        [12, () => extraApis.subscribed],
       ],
       def: () => `Undefined ${typeRaw}`,
     }) : get(d, "common.method");
+  }
+
+  private toChat = (d: unknown) => {
+    const content = get(d, "extra.content");
     return {
       timestamp: new Date().getTime(),
-      method,
+      method: this.typeOf(d),
       user: toUser(d),
       content: content as string,
       isFiltered: this.status.exactlyFilterList.indexOf(content) !== -1,
+    };
+  }
+
+  private toGift = async (d: any) => {
+    if (isUndefined(this.status.giftList)) {
+      const r = await fetchGiftList(this.status.room.id);
+      this.status.giftList = [];
+      r.gift_info.map((v) => {
+        console.log(JSON.stringify({
+          name: v.name,
+          weight: v.diamond_count,
+        }));
+        Reflect.set(this.status.giftList, v.id, {
+          name: v.name,
+          weight: v.diamond_count,
+        });
+      });
+    }
+    const getInfo = (str: string) => get(d, "extra.present_info." + str);
+    const getEnd = (str: string) => get(d, "extra.present_end_info." + str);
+    const getAll = (str: string) => getInfo(str) || getEnd(str);
+    return {
+      user: toUser(d),
+      giftId: parseInt(getAll("id"), 10),
+      groupId: getAll("group_id"),
+      count: getAll("count"),
     };
   }
 }

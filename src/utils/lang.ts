@@ -1,21 +1,25 @@
 /**
  * alternative to native switch statement
  */
-import {isNull, isUndefined} from "lodash-es";
+import {isArray, isNull, isUndefined} from "lodash-es";
 
-export const selectCase = <T>(opt: { exp: T, def?: () => any, case: Array<[T] | [T, () => any]> }) => {
-  for (const v of opt.case) {
-    if (opt.exp === v[0]) {
-      if (v[1]) {
-        return v[1]();
+export const selectCase =
+  <T>(opt: { exp: T, def?: () => any, case: Array<[T] | [T, () => any] | [T[]] | [T[], () => any]> }) => {
+    for (const v of opt.case) {
+      const conditions = isArray(v[0]) ? v[0] : [v[0]];
+      if (conditions.includes(opt.exp)) {
+        if (v[1]) {
+          return v[1]();
+        } else {
+          return;
+        }
       }
     }
-  }
-  if (opt.def) {
-    return opt.def();
-  }
-  return;
-};
+    if (opt.def) {
+      return opt.def();
+    }
+    return;
+  };
 
 type anyFunc = (...args: any[]) => any;
 
@@ -25,10 +29,11 @@ export const bypass: anyFunc = (...args) => args.length === 1 ? args[0] : args;
 export const recursivelyRun = async (method: (...args: any[]) => Promise<any>, interval: number) => {
   try {
     await method();
-    setTimeout( () => {
+    setTimeout(() => {
       recursivelyRun(method, interval).then();
     }, interval);
-  } catch {}
+  } catch {
+  }
 };
 
 export const sleep = async (time: number) => {

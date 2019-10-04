@@ -7,6 +7,8 @@ export const urls = {
   locateRoom: (keyword) => "https://security.snssdk.com/video/app/search/live/" +
     "?version_code=730&device_platform=android" +
     `&format=json&keyword=${keyword}`,
+  giftList: (roomId) => `https://i.snssdk.com/videolive/gift/get_gift_list?room_id=${roomId}` +
+    `&version_code=730&device_platform=android`,
 } as const;
 
 export const fetchRoomInfo = (roomId: string) =>
@@ -17,3 +19,6 @@ export const fetchLiveComment = (roomId: string, opts: { offset: number }) =>
 
 export const fetchLocateRoom = (keyword: string) =>
   get(urls.locateRoom, {args: [keyword]});
+
+export const fetchGiftList = (roomId: string) =>
+  get(urls.giftList, {args: [roomId]});

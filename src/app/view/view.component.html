@@ -1,12 +1,12 @@
 <div class="comment-box-container">
   <div class="comment-box">
-    <div *ngFor="let v of worker.commentPool.slice(0, 300)">
-      <ng-chat *ngIf="v.method === 'VideoLiveChatMessage'" [chat]="v"></ng-chat>
+    <div *ngFor="let v of worker.pool.comment.slice(0, 300)">
+      <ng-chat [chat]="v"></ng-chat>
     </div>
   </div>
   <div class="comment-box align-r">
-    <div *ngFor="let v of worker.commentPool.slice(0, 300)">
-      <ng-chat *ngIf="v.method !== 'VideoLiveChatMessage'" [chat]="v"></ng-chat>
+    <div *ngFor="let v of worker.pool.other.slice(0, 300)">
+      <ng-chat [chat]="v"></ng-chat>
     </div>
   </div>
 </div>
