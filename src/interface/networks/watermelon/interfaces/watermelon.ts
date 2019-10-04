@@ -5,6 +5,8 @@ import {recursivelyRun, sleep} from "../../../../utils/lang";
 import {toUser} from "../conv/user";
 import {toChat} from "../conv/chat";
 
+const poolSize = 10000;
+
 export class Watermelon {
   public status: {
     isLive: boolean
@@ -46,7 +48,7 @@ export class Watermelon {
       }
     }
     recursivelyRun(this.fetchRoom, 30 * 1000).then();
-    recursivelyRun(this.fetchComment, 1000).then();
+    recursivelyRun(this.fetchComment, 2000).then();
   }
 
   public fetchRoom = async () => {
@@ -93,11 +95,14 @@ export class Watermelon {
     this.status.offset = d.extra.cursor;
     d.data.forEach((v) => {
       if (!isNil(toChat(v))) {
-        this.commentPool.push({
+        this.commentPool.unshift({
           ...toChat(v),
         });
       }
     });
+    while (this.commentPool.length > poolSize) {
+      this.commentPool.pop();
+    }
   }
 
   private locateRoom = async () => {

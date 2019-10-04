@@ -20,6 +20,7 @@ export const toChat = (d: unknown) => {
     def: () => `Undefined ${typeRaw}`,
   }) : get(d, "common.method");
   return {
+    timestamp: new Date().getTime(),
     method,
     user: toUser(d),
     content: content as string,
