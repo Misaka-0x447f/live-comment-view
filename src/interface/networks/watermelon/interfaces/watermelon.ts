@@ -1,11 +1,31 @@
 import {fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
 import {defaultTo, get, isEmpty, isNil} from "lodash-es";
-import {recursivelyRun, sleep} from "../../../../utils/lang";
+import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
 import {toUser} from "../conv/user";
-import {toChat} from "../conv/chat";
 
 const poolSize = 10000;
+
+export type ChatMethods = APIMethods | ExtraMethods;
+export type APIMethods =
+  "VideoLivePresentMessage"           // TODO: support gift
+  | "VideoLivePresentEndTipMessage"
+  | "VideoLiveRoomAdMessage"
+  | "VideoLiveChatMessage"            // normal chat
+  | "VideoLiveMemberMessage"          // audience inbound
+  | "VideoLiveSocialMessage"          // audience subscribed
+  | "VideoLiveJoinDiscipulusMessage"  // audience favoured
+  | "VideoLiveControlMessage"         // streamer leave
+  | "VideoLiveDiggMessage"            // [ignore] broadcast
+  | "VideoLiveDanmakuMessage"         // unknown type danmaku
+  | "VideoLiveNoticeMessage"          // [ignore] broadcast
+  | "VideoLiveNoticeMessage";
+export type ExtraMethods =
+  "Inbound"
+  | "Banned"
+  | "Unbanned"
+  | "Elevated"
+  | "Subscribed";
 
 export class Watermelon {
   public status: {
@@ -18,6 +38,7 @@ export class Watermelon {
       activeUserCount: number,
     }
     offset: number,
+    exactlyFilterList: string[],
   } = {
     isLive: false,
     lastRoomFetch: false,
@@ -25,8 +46,9 @@ export class Watermelon {
       activeUserCount: -1,
     },
     offset: 0,
+    exactlyFilterList: [],
   };
-  public commentPool: Array<ReturnType<typeof toChat>> = [];
+  public commentPool: Array<ReturnType<Watermelon["pushChat"]>> = [];
   private config: {
     streamer: string,
   };
@@ -94,9 +116,9 @@ export class Watermelon {
     }
     this.status.offset = d.extra.cursor;
     d.data.forEach((v) => {
-      if (!isNil(toChat(v))) {
+      if (!isNil(this.pushChat(v))) {
         this.commentPool.unshift({
-          ...toChat(v),
+          ...this.pushChat(v),
         });
       }
     });
@@ -120,5 +142,29 @@ export class Watermelon {
       this.status.room.id = defaultTo(get(v, "cells.0.anchor.room_id"), undefined);
       this.status.room.streamer = toUser(get(v, "cells.0.anchor"));
     }
+  }
+
+  private pushChat = (d: unknown) => {
+    const content = get(d, "extra.content");
+    const typeRaw = get(d, "common.method");
+    const action = get(d, "extra.action");
+    const method = typeRaw === "VideoLiveMemberMessage" ? selectCase({
+      exp: parseInt(action, 10),
+      case: [
+        [1, () => "Inbound"],
+        [3, () => "Banned"],
+        [4, () => "Unbanned"],
+        [5, () => "Elevated"],
+        [12, () => "Subscribed"],
+      ],
+      def: () => `Undefined ${typeRaw}`,
+    }) : get(d, "common.method");
+    return {
+      timestamp: new Date().getTime(),
+      method,
+      user: toUser(d),
+      content: content as string,
+      isFiltered: this.status.exactlyFilterList.indexOf(content) !== -1,
+    };
   }
 }
