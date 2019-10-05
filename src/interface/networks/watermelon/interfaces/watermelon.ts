@@ -1,9 +1,11 @@
 import {fetchGiftList, fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
-import {defaultTo, forIn, get, isEmpty, isUndefined} from "lodash-es";
+import {defaultTo, forIn, get, isEmpty, isUndefined, omit} from "lodash-es";
 import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
 import {toUser} from "../util/user";
 import {ChatMethods, extraApis} from "../util/type";
+import {Await} from "../../../../utils/typescript";
+import {isIterable} from "rxjs/internal-compatibility";
 
 const poolSize = 10000;
 
@@ -34,7 +36,7 @@ export class Watermelon {
   };
   public pool = {
     comment: [] as Array<ReturnType<Watermelon["toChat"]>>,
-    gift: [] as Array<ReturnType<Watermelon["toGift"]>>,
+    gift: {} as {[groupId: string]: Omit<Await<ReturnType<Watermelon["toGift"]>>, "groupId">},
     other: [] as Array<ReturnType<Watermelon["toChat"]>>,
   };
   private config: {
@@ -113,15 +115,26 @@ export class Watermelon {
           ],
           [
             ["VideoLivePresentMessage", "VideoLivePresentEndTipMessage"],
-            () => this.pool.gift.unshift(this.toGift(v)),
+            async () => {
+              const src = await this.toGift(v);
+              if (Reflect.has(this.pool.gift, src.groupId)) {
+                const tgt = this.pool.gift[src.groupId];
+                assert.eq(tgt.gift.name, src.gift.name, "Mismatched gift type");
+                tgt.gift.count += src.gift.count;
+              } else {
+                Reflect.set(this.pool.gift, src.groupId, omit(src, "groupId"));
+              }
+            },
           ],
         ],
         def: () => this.pool.other.unshift(this.toChat(v)),
       });
     });
     forIn(this.pool, (v) => {
-      while (v.length > poolSize) {
-        v.pop();
+      if (isIterable(v)) {
+        while (v.length > poolSize) {
+          v.pop();
+        }
       }
     });
   }
@@ -179,20 +192,23 @@ export class Watermelon {
           name: v.name,
           weight: v.diamond_count,
         }));
-        Reflect.set(this.status.giftList, v.id, {
-          name: v.name,
-          weight: v.diamond_count,
+        Reflect.set(this.status.giftList, v.id as number, {
+          name: v.name as string,
+          weight: v.diamond_count as number,
         });
       });
     }
     const getInfo = (str: string) => get(d, "extra.present_info." + str);
     const getEnd = (str: string) => get(d, "extra.present_end_info." + str);
     const getAll = (str: string) => getInfo(str) || getEnd(str);
+    const giftId = parseInt(getAll("id"), 10);
     return {
       user: toUser(d),
-      giftId: parseInt(getAll("id"), 10),
-      groupId: getAll("group_id"),
-      count: getAll("count"),
+      gift: {
+        ...this.status.giftList[giftId],
+        count: getAll("count") as number,
+      },
+      groupId: getAll("group_id") as string,
     };
   }
 }
