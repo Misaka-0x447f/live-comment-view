@@ -9,6 +9,7 @@ import {ViewComponent} from "./view/view.component";
 import {ChatComponent} from "../component/chat/chat.component";
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {GiftComponent} from "../component/gift/gift.component";
 
 const routes: Routes = [
   {path: "view", component: ViewComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
     DemoComponent,
     ChatComponent,
     ViewComponent,
+    GiftComponent,
   ],
   imports: [
     BrowserModule,

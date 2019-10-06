@@ -8,6 +8,7 @@ import {Await} from "../../../../utils/typescript";
 import {isIterable} from "rxjs/internal-compatibility";
 
 const poolSize = 10000;
+const price = 4;       // CNY/100
 
 export class Watermelon {
   public status: {
@@ -36,8 +37,14 @@ export class Watermelon {
   };
   public pool = {
     comment: [] as Array<ReturnType<Watermelon["toChat"]>>,
-    gift: {} as {[groupId: string]: Omit<Await<ReturnType<Watermelon["toGift"]>>, "groupId">},
+    gift: {} as { [groupId: string]: Omit<Await<ReturnType<Watermelon["toGift"]>>, "groupId"> },
     other: [] as Array<ReturnType<Watermelon["toChat"]>>,
+  };
+  /**
+   * @member stats.giftTotal  CNY of gift * 100
+   */
+  public stats = {
+    giftTotal: 0,
   };
   private config: {
     streamer: string,
@@ -105,6 +112,7 @@ export class Watermelon {
       return;
     }
     this.status.offset = d.extra.cursor;
+
     d.data.forEach((v) => {
       selectCase({
         exp: this.typeOf(v),
@@ -120,7 +128,11 @@ export class Watermelon {
               if (Reflect.has(this.pool.gift, src.groupId)) {
                 const tgt = this.pool.gift[src.groupId];
                 assert.eq(tgt.gift.name, src.gift.name, "Mismatched gift type");
-                tgt.gift.count += src.gift.count;
+                if (this.typeOf(v) === "VideoLivePresentEndTipMessage") {
+                  tgt.gift.count = src.gift.count;
+                } else {
+                  tgt.gift.count += src.gift.count;
+                }
               } else {
                 Reflect.set(this.pool.gift, src.groupId, omit(src, "groupId"));
               }
@@ -130,6 +142,12 @@ export class Watermelon {
         def: () => this.pool.other.unshift(this.toChat(v)),
       });
     });
+
+    let count = 0;
+    forIn(this.pool.gift, (v) => {
+      count += v.gift.count * v.gift.weight * price;
+    });
+
     forIn(this.pool, (v) => {
       if (isIterable(v)) {
         while (v.length > poolSize) {

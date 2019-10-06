@@ -3,6 +3,9 @@ import {nop} from "./lang";
 const i18nCommentBypass = (u, t) => `${u} ${t}`;
 
 export const i18n = {
+  common: {
+    priceUnit: "CN¥",
+  },
   room: {
     streamer: "主播",
     operator: "房管",
