@@ -6,9 +6,7 @@ import {toUser} from "../util/user";
 import {ChatMethods, extraApis} from "../util/type";
 import {Await} from "../../../../utils/typescript";
 import {isIterable} from "rxjs/internal-compatibility";
-
-const poolSize = 10000;
-const price = 4;       // CNY/100
+import {register} from "../register";
 
 export class Watermelon {
   public status: {
@@ -37,7 +35,8 @@ export class Watermelon {
   };
   public pool = {
     comment: [] as Array<ReturnType<Watermelon["toChat"]>>,
-    gift: {} as { [groupId: string]: Omit<Await<ReturnType<Watermelon["toGift"]>>, "groupId"> },
+    giftHistory: {} as { [groupId: string]: Omit<Await<ReturnType<Watermelon["toGift"]>>, "groupId"> },
+    giftStream: [] as Array<Await<ReturnType<Watermelon["toGift"]>>>,
     other: [] as Array<ReturnType<Watermelon["toChat"]>>,
   };
   /**
@@ -124,9 +123,10 @@ export class Watermelon {
           [
             ["VideoLivePresentMessage", "VideoLivePresentEndTipMessage"],
             async () => {
+              // giftHistory
               const src = await this.toGift(v);
-              if (Reflect.has(this.pool.gift, src.groupId)) {
-                const tgt = this.pool.gift[src.groupId];
+              if (Reflect.has(this.pool.giftHistory, src.groupId)) {
+                const tgt = this.pool.giftHistory[src.groupId];
                 assert.eq(tgt.gift.name, src.gift.name, "Mismatched gift type");
                 if (this.typeOf(v) === "VideoLivePresentEndTipMessage") {
                   tgt.gift.count = src.gift.count;
@@ -134,8 +134,10 @@ export class Watermelon {
                   tgt.gift.count += src.gift.count;
                 }
               } else {
-                Reflect.set(this.pool.gift, src.groupId, omit(src, "groupId"));
+                Reflect.set(this.pool.giftHistory, src.groupId, omit(src, "groupId"));
               }
+              // giftStream
+              this.pool.giftStream.unshift(await this.toGift(v));
             },
           ],
         ],
@@ -143,14 +145,16 @@ export class Watermelon {
       });
     });
 
+    // update gift total
     let count = 0;
-    forIn(this.pool.gift, (v) => {
-      count += v.gift.count * v.gift.weight * price;
+    forIn(this.pool.giftHistory, (v) => {
+      count += v.gift.count * v.gift.weight * register.price;
     });
+    this.stats.giftTotal = count;
 
     forIn(this.pool, (v) => {
       if (isIterable(v)) {
-        while (v.length > poolSize) {
+        while (v.length > register.poolSize) {
           v.pop();
         }
       }
@@ -222,6 +226,7 @@ export class Watermelon {
     const giftId = parseInt(getAll("id"), 10);
     return {
       user: toUser(d),
+      isEnd: this.typeOf(d) === "VideoLivePresentEndTipMessage",
       gift: {
         ...this.status.giftList[giftId],
         count: getAll("count") as number,

@@ -13,8 +13,7 @@ export const i18n = {
   comments: {
     VideoLiveNoticeMessage: nop,
     VideoLiveRoomAdMessage: nop,
-    VideoLivePresentMessage: (u) => `${u} 的礼物大量发生中`,
-    VideoLivePresentEndTipMessage: (u) => `${u} 的礼物发生完了`,
+    VideoLivePresentMessage: (u, c, n) => `${u} 赠送 ${c} 个 ${n}`,
     VideoLiveChatMessage: i18nCommentBypass,
     VideoLiveDanmakuMessage: i18nCommentBypass,
     Inbound: (u) => `${u} 的进站请求被接受`,

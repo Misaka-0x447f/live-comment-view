@@ -8,8 +8,7 @@ import i18n from "../../utils/i18n";
   styleUrls: ["./gift.component.styl"],
 })
 export class GiftComponent implements OnInit {
-  @Input() private gift: Watermelon["pool"]["gift"];
-  @Input() private giftCount: number;   // CNY/100
+  @Input() private worker: Watermelon;
 
   private i18n = i18n;
 
