@@ -1,6 +1,6 @@
 import {fetchGiftList, fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
-import {defaultTo, forIn, get, isEmpty, isUndefined, omit} from "lodash-es";
+import {defaultTo, forIn, get, isEmpty, isNull, isUndefined, omit} from "lodash-es";
 import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
 import {toUser} from "../util/user";
 import {ChatMethods, extraApis} from "../util/type";
@@ -19,7 +19,6 @@ export class Watermelon {
       activeUserCount: number,
     }
     offset: number,
-    exactlyFilterList: string[],
     giftList?: Array<{
       name: number,
       weight: number,   // stands for amount of point used
@@ -31,7 +30,6 @@ export class Watermelon {
       activeUserCount: -1,
     },
     offset: 0,
-    exactlyFilterList: [],
   };
   public pool = {
     comment: [] as Array<ReturnType<Watermelon["toChat"]>>,
@@ -118,7 +116,12 @@ export class Watermelon {
         case: [
           [
             ["VideoLiveChatMessage", "VideoLiveDanmakuMessage"],
-            () => this.pool.comment.unshift(this.toChat(v)),
+            () => {
+              const r = this.toChat(v);
+              if (!r.isFiltered) {
+                this.pool.comment.unshift(this.toChat(v));
+              }
+            },
           ],
           [
             ["VideoLivePresentMessage", "VideoLivePresentEndTipMessage"],
@@ -201,7 +204,7 @@ export class Watermelon {
       method: this.typeOf(d),
       user: toUser(d),
       content: content as string,
-      isFiltered: this.status.exactlyFilterList.indexOf(content) !== -1,
+      isFiltered: register.filter.some((v) => !isNull(v.exec(content))),
     };
   }
 

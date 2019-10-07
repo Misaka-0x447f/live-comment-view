@@ -5,4 +5,7 @@ export const register = {
     room: 30,
     comment: 1,
   },
+  filter: [
+    /^\d*$/,
+  ],
 };
