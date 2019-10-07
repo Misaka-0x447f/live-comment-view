@@ -4,8 +4,8 @@
     <span>{{worker.stats.giftTotal / 100}}</span>
   </div>
   <div class="list">
-    <div *ngFor="let v of worker.pool.giftStream.slice(0, 6)">
-      <span *ngIf="!v.isEnd">{{i18n.comments.VideoLivePresentMessage(v.user.name, v.gift.count, v.gift.name)}}</span>
+    <div *ngFor="let v of worker.pool.giftTotalStream.slice(0, 5)">
+      <span>{{i18n.comments.VideoLivePresentMessage(v.user.name, v.gift.count, v.gift.name)}}</span>
     </div>
   </div>
 </div>

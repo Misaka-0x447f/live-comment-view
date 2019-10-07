@@ -35,6 +35,7 @@ export class Watermelon {
     comment: [] as Array<ReturnType<Watermelon["toChat"]>>,
     giftHistory: {} as { [groupId: string]: Omit<Await<ReturnType<Watermelon["toGift"]>>, "groupId"> },
     giftStream: [] as Array<Await<ReturnType<Watermelon["toGift"]>>>,
+    giftTotalStream: [] as Array<Await<ReturnType<Watermelon["toGift"]>>>,
     other: [] as Array<ReturnType<Watermelon["toChat"]>>,
   };
   /**
@@ -139,8 +140,13 @@ export class Watermelon {
               } else {
                 Reflect.set(this.pool.giftHistory, src.groupId, omit(src, "groupId"));
               }
-              // giftStream
-              this.pool.giftStream.unshift(await this.toGift(v));
+              if (this.typeOf(v) === "VideoLivePresentMessage") {
+                // giftStream
+                this.pool.giftStream.unshift(await this.toGift(v));
+              } else {
+                // giftTotalStream
+                this.pool.giftTotalStream.unshift(await this.toGift(v));
+              }
             },
           ],
         ],
