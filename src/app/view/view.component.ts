@@ -3,6 +3,7 @@ import {Watermelon} from "../../interface/networks/watermelon/interfaces/waterme
 import {getParams} from "../../utils/dom";
 import {includeAll} from "../../utils/lang";
 import {Router} from "@angular/router";
+import i18n from "../../utils/i18n";
 
 @Component({
   selector: "ng-view",
@@ -12,6 +13,8 @@ import {Router} from "@angular/router";
 export class ViewComponent implements OnInit {
   private worker: Watermelon;
   private params: Partial<Record<"streamer", string>> = getParams();
+
+  private i18n = i18n;
 
   constructor(private router: Router) {
     if (!includeAll(this.params, ["streamer"])) {

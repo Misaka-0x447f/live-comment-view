@@ -5,8 +5,8 @@ export const toUser = (d: any) => {
   let r: Partial<{
     id: number;
     name: string;
-    brand: string;
-    level: number;
+    brand?: string;
+    level?: number;
     type: number;
     block: boolean;
     mute: boolean;

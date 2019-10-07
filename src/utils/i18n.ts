@@ -1,17 +1,20 @@
 import {nop} from "./lang";
 
+const d = (c, r?) => c ? (r ? r : c) : "";
+
 export const i18n = {
   common: {
     priceUnit: "CN¥",
     offline: "{ 失去同步 }",
   },
   room: {
-    streamer: "主播",
-    operator: "房管",
+    streamer: "🔑",
+    operator: "🔧",
   },
   comments: {
     VideoLiveNoticeMessage: nop,
     VideoLiveRoomAdMessage: nop,
+    breadcrumb: (u, l?, b?, p?) => `${d(p)} ${d(l, "[")}${d(l)} ${d(b)}${d(l, "]")} ${u}`,
     VideoLivePresentMessage: (u, c, n) => `${u} 赠送 ${c} 个 ${n}`,
     Inbound: (u) => `${u} 的进站请求被接受`,
     Banned: (u) => `${u} 已遭到封锁`,
