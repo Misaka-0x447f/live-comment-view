@@ -3,7 +3,7 @@
     <span>{{i18n.common.priceUnit}}</span>
     <span>{{worker.stats.giftTotal / 100}}</span>
   </div>
-  <div *ngFor="let v of worker.pool.giftStream.slice(0, 5)">
+  <div *ngFor="let v of worker.pool.giftStream.slice(0, 6)">
     <span *ngIf="!v.isEnd">{{i18n.comments.VideoLivePresentMessage(v.user.name, v.gift.count, v.gift.name)}}</span>
   </div>
 </div>

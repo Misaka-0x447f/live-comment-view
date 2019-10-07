@@ -1,7 +1,5 @@
 import {nop} from "./lang";
 
-const i18nCommentBypass = (u, t) => `${u} ${t}`;
-
 export const i18n = {
   common: {
     priceUnit: "CN¥",
@@ -15,8 +13,6 @@ export const i18n = {
     VideoLiveNoticeMessage: nop,
     VideoLiveRoomAdMessage: nop,
     VideoLivePresentMessage: (u, c, n) => `${u} 赠送 ${c} 个 ${n}`,
-    VideoLiveChatMessage: i18nCommentBypass,
-    VideoLiveDanmakuMessage: i18nCommentBypass,
     Inbound: (u) => `${u} 的进站请求被接受`,
     Banned: (u) => `${u} 已遭到封锁`,
     Unbanned: (u) => `${u} 的封锁已解除`,
@@ -24,9 +20,7 @@ export const i18n = {
     Subscribed: (u) => `${u} 正在监听你的直播`,
     VideoLiveJoinDiscipulusMessage: (u) => `${u} 已将你设为最爱`,
     notRegistered: (u, c, type) => `${u} 执行了动作类型: ${type}${c ? ", 并说：" + c : ""}`,
-    like: (u) => `${u} +1 了`,
     VideoLiveControlMessage: "zzzzzzzzz",
-    lottery: (u) => `(中奖消息) ${u}`,
   },
 };
 

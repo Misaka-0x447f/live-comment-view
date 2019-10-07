@@ -2,13 +2,13 @@
 <div class="comment-box-container">
   <ng-gift [worker]="worker"></ng-gift>
   <div>
-    <div *ngFor="let v of worker.pool.other.slice(0, 1)">
-      <ng-chat [chat]="v"></ng-chat>
+    <div *ngFor="let v of worker.pool.other.slice(0, 3)">
+      <ng-info [chat]="v"></ng-info>
     </div>
   </div>
   <div class="comment-box">
     <div *ngFor="let v of worker.pool.comment.slice(0, 300)">
-      <ng-chat [chat]="v"></ng-chat>
+      <ng-chat [content]="v.content" [username]="v.user.name"></ng-chat>
     </div>
   </div>
 </div>
