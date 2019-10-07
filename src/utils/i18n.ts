@@ -5,6 +5,7 @@ const i18nCommentBypass = (u, t) => `${u} ${t}`;
 export const i18n = {
   common: {
     priceUnit: "CN¥",
+    offline: "{ 失去同步 }",
   },
   room: {
     streamer: "主播",

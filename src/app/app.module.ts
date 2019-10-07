@@ -10,6 +10,7 @@ import {ChatComponent} from "../component/chat/chat.component";
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {GiftComponent} from "../component/gift/gift.component";
+import {OfflineOverlayComponent} from "../component/offline-overlay/offline-overlay.component";
 
 const routes: Routes = [
   {path: "view", component: ViewComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
     ChatComponent,
     ViewComponent,
     GiftComponent,
+    OfflineOverlayComponent,
   ],
   imports: [
     BrowserModule,
