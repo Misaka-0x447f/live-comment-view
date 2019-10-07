@@ -1,0 +1,10 @@
+<div [@construct]="'final'">
+  <div *ngIf="!isNil(i18n.comments[message.type]); else noMatch">
+    {{i18n.comments[message.type](message.user, message.text)}}
+  </div>
+  <ng-template #noMatch>
+    <div>
+      {{i18n.comments.notRegistered(message.user, message.text, message.type)}}
+    </div>
+  </ng-template>
+</div>
