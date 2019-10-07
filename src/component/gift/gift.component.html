@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="total">
+  <div *ngFor="let _ of [worker.stats.giftTotal]" [@new]="'new'" class="total">
     <span class="unit">{{i18n.common.priceUnit}}</span>
     <span>{{worker.stats.giftTotal / 100}}</span>
   </div>
