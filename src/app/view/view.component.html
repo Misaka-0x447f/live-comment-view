@@ -1,5 +1,5 @@
 <ng-offline-overlay *ngIf="!worker.status.isLive"></ng-offline-overlay>
-<div class="comment-box-container">
+<div class="container">
   <ng-gift [worker]="worker"></ng-gift>
   <div>
     <div *ngFor="let v of worker.pool.other.slice(0, 3)">

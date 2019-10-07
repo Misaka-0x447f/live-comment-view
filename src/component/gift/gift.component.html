@@ -1,9 +1,11 @@
 <div class="container">
   <div class="total">
-    <span>{{i18n.common.priceUnit}}</span>
+    <span class="unit">{{i18n.common.priceUnit}}</span>
     <span>{{worker.stats.giftTotal / 100}}</span>
   </div>
-  <div *ngFor="let v of worker.pool.giftStream.slice(0, 6)">
-    <span *ngIf="!v.isEnd">{{i18n.comments.VideoLivePresentMessage(v.user.name, v.gift.count, v.gift.name)}}</span>
+  <div class="list">
+    <div *ngFor="let v of worker.pool.giftStream.slice(0, 6)">
+      <span *ngIf="!v.isEnd">{{i18n.comments.VideoLivePresentMessage(v.user.name, v.gift.count, v.gift.name)}}</span>
+    </div>
   </div>
 </div>

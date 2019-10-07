@@ -4,13 +4,17 @@
   font-size: 1.2em;
   justify-content: flex-start;
   flex: 1;
+  max-height: 100%;
   overflow: scroll-y;
 }
 
-.comment-box-container {
+.container {
   display: flex;
+  align-items: flex-end;
+  padding: 1em;
   flex-direction: column;
   height: 100%;
+  box-sizing: border-box;
   & > * {
     margin-bottom: 0.5em;
   }
