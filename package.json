@@ -32,7 +32,6 @@
     "@angular/language-service": "~8.2.0",
     "@types/lodash-es": "^4.17.3",
     "@types/node": "~8.9.4",
-    "just-scripts": "^0.28.2",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
