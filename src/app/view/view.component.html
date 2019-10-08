@@ -8,7 +8,8 @@
   </div>
   <div class="comment-box">
     <div *ngFor="let v of worker.pool.comment.slice(0, 300)">
-      <ng-chat [breadcrumb]="i18n.comments.breadcrumb(v.user.name, v.user.level, v.user.brand, v.user.prefix)"
+      <ng-chat [badge]="i18n.comments.badge(v.user.level, v.user.brand)"
+               [breadcrumb]="i18n.comments.breadcrumb(v.user.name, v.user.prefix)"
                [content]="v.content"
       ></ng-chat>
     </div>

@@ -14,7 +14,8 @@ export const i18n = {
   comments: {
     VideoLiveNoticeMessage: nop,
     VideoLiveRoomAdMessage: nop,
-    breadcrumb: (u, l?, b?, p?) => `${d(p)} ${d(l, "[")}${d(l)} ${d(b)}${d(l, "]")} ${u}`,
+    breadcrumb: (u, p?) => `${d(p)} ${u}`,
+    badge: (l?, b?) => `${d(l)} ${d(b)}`,
     VideoLivePresentMessage: (u, c, n) => `${u} 赠送 ${c} 个 ${n}`,
     Inbound: (u) => `${u} 的进站请求被接受`,
     Banned: (u) => `${u} 已遭到封锁`,

@@ -21,6 +21,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class ChatComponent implements OnInit {
   @Input() private breadcrumb: string;
+  @Input() private badge: string;
   @Input() private content: string;
 
   constructor() {
