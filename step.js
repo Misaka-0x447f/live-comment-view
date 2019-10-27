@@ -1,9 +1,4 @@
-const {spawn} = require("child_process");
-
-const main = async () => {
-  step("ng serve").then();
-  step("node ./cors-side.js").then();
-};
+import spawn from "child_process";
 
 /**
  * @param cmd {string} The command you want to run
@@ -11,7 +6,7 @@ const main = async () => {
  * @param [opt.withWarn] {boolean} Show warn in stdio
  * @param [opt.env] {NodeJS.ProcessEnv} Environment key-value pairs
  */
-const step = (cmd, opt = {withWarn: true}) => {
+export const step = (cmd, opt = {withWarn: true}) => {
   const child = spawn(cmd, [], {
     shell: true,
     stdio: ["inherit", "inherit", opt.withWarn ? "inherit" : "ignore"],
@@ -32,4 +27,4 @@ const step = (cmd, opt = {withWarn: true}) => {
   });
 };
 
-main().then();
+export default step

@@ -1,10 +1,13 @@
 {
   "name": "live-comment-view",
+  "type": "module",
   "version": "0.0.0",
   "scripts": {
-    "start": "node ./scripts/start.js",
+    "start": "node --experimental-modules scripts/serve-built.js",
     "build": "ng build",
-    "lint": "ng lint"
+    "serve": "node --experimental-modules scripts/serve.js",
+    "lint": "ng lint",
+    "postinstall": "node --experimental-modules scripts/postinstall.js"
   },
   "private": true,
   "dependencies": {
@@ -17,10 +20,15 @@
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
+    "body-parser": "latest",
     "cors-anywhere": "^0.4.1",
+    "es6-shim": "^0.35.5",
+    "execa": "^3.2.0",
+    "express": "latest",
     "hammerjs": "^2.0.8",
     "ky": "^0.12.0",
     "lodash-es": "^4.17.15",
+    "moment": "^2.24.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
