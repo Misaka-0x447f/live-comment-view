@@ -1,4 +1,6 @@
-const {step} = require("../step");
+import execa from "execa";
 
-step("ng serve").then();
-step("node ./cors-side.js").then();
+(async () => {
+  execa("node", ["--experimental-modules", "./cors-side.js"], {stdout: "inherit", stderr: "inherit"});
+  await execa("ng", ["serve"], {stdout: "inherit", stderr: "inherit"});
+})();

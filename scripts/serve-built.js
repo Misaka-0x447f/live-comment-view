@@ -64,5 +64,5 @@ class Server {
   }
 }
 
-execa('node', ['--experimental-modules', './cors-side.js']).stdout.pipe(process.stdout);
+execa('node', ['--experimental-modules', './cors-side.js'], {stdout: "inherit", stderr: "inherit"});
 Server.bootstrap();
