@@ -159,7 +159,10 @@ export class Watermelon {
     // update gift total
     let count = 0;
     forIn(this.pool.giftHistory, (v) => {
-      count += v.gift.count * v.gift.weight * register.price;
+      const price = v.gift.count * v.gift.weight * register.price;
+      if (isFinite(count + price)) {
+        count += v.gift.count * v.gift.weight * register.price;
+      }
     });
     this.stats.giftTotal = count;
 
