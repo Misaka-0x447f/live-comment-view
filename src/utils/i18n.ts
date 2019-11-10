@@ -26,6 +26,9 @@ export const i18n = {
     notRegistered: (u, c, type) => `${u} 执行了动作类型: ${type}${c ? ", 并说：" + c : ""}`,
     VideoLiveControlMessage: "zzzzzzzzz",
   },
+  tts: {
+    thanks: (u, c, p) => `${u} 赠送了 ${c} 个 ${p}`,
+  },
 };
 
 export default i18n;

@@ -15,7 +15,8 @@
     "no-console": false,
     "no-debugger": false,
     "no-empty": false,
-    "interface-name": false
+    "interface-name": false,
+    "semicolon": [true, "always"]
   },
   "rulesDirectory": []
 }

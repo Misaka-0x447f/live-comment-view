@@ -7,6 +7,7 @@ import {ChatMethods, extraApis} from "../util/type";
 import {Await} from "../../../../utils/typescript";
 import {isIterable} from "rxjs/internal-compatibility";
 import {register} from "../register";
+import {ec} from "../../../../utils/event";
 
 export class Watermelon {
   public status: {
@@ -146,6 +147,7 @@ export class Watermelon {
               } else {
                 // giftTotalStream
                 this.pool.giftTotalStream.unshift(await this.toGift(v));
+                ec.emit("presentEnd", await this.toGift(v));
               }
             },
           ],
