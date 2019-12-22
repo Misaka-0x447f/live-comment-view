@@ -21,7 +21,11 @@ export const fetchRoom = <T extends valueOf<typeof urls>>(url: T, opts: {
 
 export const get = <T extends valueOf<typeof urls>>(url: T, opts: {
   args?: Parameters<T>;
-}): any => {
+},                                                  notJson = false): any => {
   // @ts-ignore
-  return ky.get(CORSProxy + url(...defaultTo(opts.args, []))).json();
+  const res = ky.get(CORSProxy + url(...defaultTo(opts.args, [])));
+  if (notJson) {
+    return res.text();
+  }
+  return res.json();
 };

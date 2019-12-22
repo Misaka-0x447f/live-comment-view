@@ -29,6 +29,8 @@ export const bypass: anyFunc = (...args) => args.length === 1 ? args[0] : args;
 export const recursivelyRun = async (method: (...args: any[]) => Promise<any>, interval: number) => {
   try {
     await method();
+  } catch (e) {
+    throw e;
   } finally {
     setTimeout(() => {
       recursivelyRun(method, interval).then();

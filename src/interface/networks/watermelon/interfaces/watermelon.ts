@@ -1,6 +1,6 @@
 import {fetchGiftList, fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
 import {assert} from "../../../../utils/assert";
-import {defaultTo, forIn, get, isEmpty, isNull, isUndefined, omit} from "lodash-es";
+import {forIn, get, isNull, isUndefined, omit} from "lodash-es";
 import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
 import {toUser} from "../util/user";
 import {ChatMethods, extraApis} from "../util/type";
@@ -177,19 +177,16 @@ export class Watermelon {
 
   private locateRoom = async () => {
     const d = await fetchLocateRoom(this.config.streamer);
-    assert.notNil(d.data, "invalid search result");
-    for (const v of d.data) {
-      if (v.block_type !== 0) {
-        continue;
-      }
-      if (isEmpty(v.cells)) {
-        return null;
-      }
-      this.status.lastRoomFetch = true;
-      this.status.isLive = defaultTo(get(v, "cells.0.anchor.user_info.is_living"), false);
-      this.status.room.id = defaultTo(get(v, "cells.0.anchor.room_id"), undefined);
-      this.status.room.streamer = toUser(get(v, "cells.0.anchor"));
-    }
+    const el = document.createElement("html");
+    el.innerHTML = d;
+    let roomID = (el.querySelector(".search__anchor__list > .anchor-card > a") as HTMLAnchorElement).href;
+    roomID = roomID.match(/(room\/)([0-9]+)/)[2];
+    const isLiving = (el.querySelector(
+      ".search__anchor__list > .anchor-card .anchor-card__avatar__tag",
+    ) as HTMLElement).innerText === "直播中";
+    this.status.lastRoomFetch = true;
+    this.status.isLive = isLiving;
+    this.status.room.id = roomID;
   }
 
   private typeOf = (d: any): ChatMethods => {
