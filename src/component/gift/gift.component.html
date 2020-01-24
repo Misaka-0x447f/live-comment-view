@@ -1,7 +1,8 @@
 <div class="container">
   <div *ngFor="let _ of [worker.stats.giftTotal]" [@new]="'new'" class="status">
     <div>
-      <span class="data">{{numeral(worker.status.room.activeUserCount).format('0.0 a')}}</span>
+      <span class="data">{{numeral(worker.status.room.activeUserCount).format('0.0a')}}</span>
+      <span class="data"> / avg. {{numeral(worker.stats.avgActiveUser).format('0.0a')}}</span>
     </div>
     <div>
       <span class="unit">{{i18n.common.priceUnit}}</span>

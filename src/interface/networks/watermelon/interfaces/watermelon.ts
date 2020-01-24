@@ -18,7 +18,6 @@ export class Watermelon {
       id?: string
       title?: string
       streamer?: ReturnType<typeof toUser>
-      streamTime: number
       activeUserCount: number,
     }
     offset: number,
@@ -31,8 +30,7 @@ export class Watermelon {
     isLive: false,
     lastRoomFetch: false,
     room: {
-      activeUserCount: -1,
-      streamTime: 0,
+      activeUserCount: 0,
     },
     offset: 0,
   };
@@ -48,6 +46,8 @@ export class Watermelon {
    */
   public stats = {
     giftTotal: 0,
+    streamTime: 0,
+    avgActiveUser: 0,
   };
   public config: {
     streamer: string,
@@ -66,10 +66,11 @@ export class Watermelon {
     while (!this.status.isLive) {
       await this.locateRoom();
       if (!this.status.isLive) {
-        await sleep(register.interval.room * 1000);
+        await sleep(register.interval.room * 10000);
       }
     }
-    recursivelyRun(this.fetchRoom, register.interval.room * 1000).then();
+    setInterval(this.clock, 10000);
+    recursivelyRun(this.fetchRoom, register.interval.room * 10000).then();
     recursivelyRun(this.fetchComment, register.interval.comment * 1000).then();
   }
 
@@ -93,7 +94,7 @@ export class Watermelon {
           ...this.status.room,
           streamer: toUser(d),
           title: d.room.title,
-          activeUserCount: d.room.user_count,
+          activeUserCount: parseInt(d.room.user_count, 10),
         },
       },
     };
@@ -177,6 +178,14 @@ export class Watermelon {
         }
       }
     });
+  }
+
+  private clock = () => {
+    if (this.status.isLive) {
+      this.stats.avgActiveUser = (this.stats.avgActiveUser * this.stats.streamTime + this.status.room.activeUserCount) /
+        (this.stats.streamTime + 1);
+      this.stats.streamTime++;
+    }
   }
 
   private locateRoom = async () => {
