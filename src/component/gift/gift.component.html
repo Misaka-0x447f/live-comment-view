@@ -1,7 +1,12 @@
 <div class="container">
-  <div *ngFor="let _ of [worker.stats.giftTotal]" [@new]="'new'" class="total">
-    <span class="unit">{{i18n.common.priceUnit}}</span>
-    <span>{{worker.stats.giftTotal / 100}}</span>
+  <div *ngFor="let _ of [worker.stats.giftTotal]" [@new]="'new'" class="status">
+    <div>
+      <span class="data">{{numeral(worker.status.room.activeUserCount).format('0.0 a')}}</span>
+    </div>
+    <div>
+      <span class="unit">{{i18n.common.priceUnit}}</span>
+      <span>{{worker.stats.giftTotal / 100}}</span>
+    </div>
   </div>
   <div class="list">
     <div *ngFor="let v of worker.pool.giftTotalStream.slice(0, 5)">

@@ -16,7 +16,7 @@ import {ChatComponent} from "../component/chat/chat.component";
 const routes: Routes = [
   {path: "view", component: ViewComponent},
   {path: "demo", component: DemoComponent},
-  {path: "**", redirectTo: "/config"},
+  {path: "**", redirectTo: "/view?streamer=小周吖"},
 ];
 
 @NgModule({

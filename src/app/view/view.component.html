@@ -1,4 +1,4 @@
-<ng-offline-overlay *ngIf="!worker.status.isLive"></ng-offline-overlay>
+<ng-offline-overlay *ngIf="!worker.status.isLive" [worker]="worker"></ng-offline-overlay>
 <div class="container">
   <ng-gift [worker]="worker"></ng-gift>
   <div>

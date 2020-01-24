@@ -1,3 +1,8 @@
 <div class="container">
-  {{i18n.common.offline}}
+  <div>
+    {{i18n.common.offline.replace("$1", worker.config.streamer)}}
+  </div>
+  <div>
+    {{worker.status.error}}
+  </div>
 </div>

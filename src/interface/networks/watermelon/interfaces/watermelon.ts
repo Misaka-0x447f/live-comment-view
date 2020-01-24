@@ -11,12 +11,14 @@ import {ec} from "../../../../utils/event";
 
 export class Watermelon {
   public status: {
+    error: string
     isLive: boolean
     lastRoomFetch: boolean
     room: {
       id?: string
       title?: string
       streamer?: ReturnType<typeof toUser>
+      streamTime: number
       activeUserCount: number,
     }
     offset: number,
@@ -25,10 +27,12 @@ export class Watermelon {
       weight: number,   // stands for amount of point used
     }>,
   } = {
+    error: "",
     isLive: false,
     lastRoomFetch: false,
     room: {
       activeUserCount: -1,
+      streamTime: 0,
     },
     offset: 0,
   };
@@ -45,10 +49,10 @@ export class Watermelon {
   public stats = {
     giftTotal: 0,
   };
-  private config: {
+  public config: {
     streamer: string,
   };
-  private raw: {
+  public raw: {
     room?: object,
   } = {
     room: undefined,
@@ -176,17 +180,22 @@ export class Watermelon {
   }
 
   private locateRoom = async () => {
-    const d = await fetchLocateRoom(this.config.streamer);
-    const el = document.createElement("html");
-    el.innerHTML = d;
-    let roomID = (el.querySelector(".search__anchor__list > .anchor-card > a") as HTMLAnchorElement).href;
-    roomID = roomID.match(/(room\/)([0-9]+)/)[2];
-    const isLiving = (el.querySelector(
-      ".search__anchor__list > .anchor-card .anchor-card__avatar__tag",
-    ) as HTMLElement).innerText === "直播中";
-    this.status.lastRoomFetch = true;
-    this.status.isLive = isLiving;
-    this.status.room.id = roomID;
+    try {
+      const d = await fetchLocateRoom(this.config.streamer);
+      const el = document.createElement("html");
+      el.innerHTML = d;
+      let roomID = (el.querySelector(".search__anchor__list > .anchor-card > a") as HTMLAnchorElement).href;
+      roomID = roomID.match(/(room\/)([0-9]+)/)[2];
+      const isLiving = (el.querySelector(
+        ".search__anchor__list > .anchor-card .anchor-card__avatar__tag",
+      ) as HTMLElement).innerText === "直播中";
+      this.status.lastRoomFetch = true;
+      this.status.isLive = isLiving;
+      this.status.room.id = roomID;
+    } catch (e) {
+      this.status.error = e.toString();
+      throw e;
+    }
   }
 
   private typeOf = (d: any): ChatMethods => {
