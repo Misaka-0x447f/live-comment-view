@@ -12,11 +12,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {GiftComponent} from "../component/gift/gift.component";
 import {OfflineOverlayComponent} from "../component/offline-overlay/offline-overlay.component";
 import {ChatComponent} from "../component/chat/chat.component";
+import { NumberViewComponent } from "../component/number-view/number-view.component";
 
 const routes: Routes = [
   {path: "view", component: ViewComponent},
   {path: "demo", component: DemoComponent},
-  {path: "**", redirectTo: "/view?streamer=小周吖"},
+  {path: "**", redirectTo: "/view?streamer=宝蓝狼"},
 ];
 
 @NgModule({
@@ -28,6 +29,7 @@ const routes: Routes = [
     GiftComponent,
     OfflineOverlayComponent,
     ChatComponent,
+    NumberViewComponent,
   ],
   imports: [
     BrowserModule,
