@@ -1,6 +1,9 @@
 <div class="container">
-  <div>
-    {{i18n.common.offline.replace("$1", worker.config.streamer)}}
+  <div *ngIf="!worker.status.error">
+    {{i18n.common.connecting.replace("$1", worker.config.streamer)}}
+  </div>
+  <div *ngIf="worker.status.error">
+    {{i18n.common.retrying.replace("$1", worker.config.streamer)}}
   </div>
   <div>
     {{worker.status.error}}

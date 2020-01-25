@@ -20,7 +20,6 @@ export class ViewComponent implements OnInit {
     if (!includeAll(this.params, ["streamer"])) {
       this.router.navigateByUrl("/").then();
     }
-    console.log(this.params.streamer);
     this.worker = new Watermelon({
       streamer: this.params.streamer,
     });

@@ -69,7 +69,7 @@ export class Watermelon {
         await sleep(register.interval.room * 10000);
       }
     }
-    setInterval(this.clock, 10000);
+    setInterval(this.clock, 2000);
     recursivelyRun(this.fetchRoom, register.interval.room * 10000).then();
     recursivelyRun(this.fetchComment, register.interval.comment * 1000).then();
   }
@@ -189,21 +189,28 @@ export class Watermelon {
   }
 
   private locateRoom = async () => {
+    this.status.error = "";
     try {
       const d = await fetchLocateRoom(this.config.streamer);
       const el = document.createElement("html");
       el.innerHTML = d;
       let roomID = (el.querySelector(".search__anchor__list > .anchor-card > a") as HTMLAnchorElement).href;
       roomID = roomID.match(/(room\/)([0-9]+)/)[2];
-      const isLiving = (el.querySelector(
-        ".search__anchor__list > .anchor-card .anchor-card__avatar__tag",
-      ) as HTMLElement).innerText === "直播中";
+      let isLiving;
+      try {
+        isLiving = (el.querySelector(
+          ".search__anchor__list > .anchor-card .anchor-card__avatar__tag",
+        ) as HTMLElement).innerText === "直播中";
+      } catch (e) {
+        this.status.error = "excepted 1 or more live channels, got 0.";
+        return;
+      }
       this.status.lastRoomFetch = true;
       this.status.isLive = isLiving;
       this.status.room.id = roomID;
     } catch (e) {
       this.status.error = e.toString();
-      throw e;
+      console.error(e);
     }
   }
 
@@ -239,10 +246,6 @@ export class Watermelon {
       const r = await fetchGiftList(this.status.room.id);
       this.status.giftList = [];
       r.gift_info.map((v) => {
-        console.log(JSON.stringify({
-          name: v.name,
-          weight: v.diamond_count,
-        }));
         Reflect.set(this.status.giftList, v.id as number, {
           name: v.name as string,
           weight: v.diamond_count as number,

@@ -5,7 +5,8 @@ const d = (c, r?) => c ? (r ? r : c) : "";
 export const i18n = {
   common: {
     priceUnit: "CN¥",
-    offline: "正在尝试连接 $1",
+    connecting: "正在尝试连接 $1",
+    retrying: "正在重新连接 $1",
   },
   room: {
     streamer: "🔑",
