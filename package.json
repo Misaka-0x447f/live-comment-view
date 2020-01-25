@@ -3,11 +3,11 @@
   "type": "module",
   "version": "0.0.0",
   "scripts": {
-    "start": "node --experimental-modules scripts/serve-built.js",
+    "start": "node scripts/serve-built.js",
     "build": "ng build",
-    "serve": "node --experimental-modules scripts/serve.js",
+    "serve": "node scripts/serve.js",
     "lint": "ng lint",
-    "postinstall": "node --experimental-modules scripts/postinstall.js"
+    "postinstall": "node scripts/postinstall.js"
   },
   "private": true,
   "license": "UNLICENSED",
@@ -48,6 +48,7 @@
     "@angular/language-service": "~8.2.14",
     "@types/lodash-es": "^4.17.3",
     "@types/node": "~12.12.21",
+    "simple-git": "^1.130.0",
     "ts-node": "~8.5.4",
     "tslint": "~5.20.1",
     "typescript": "<3.6.0"
