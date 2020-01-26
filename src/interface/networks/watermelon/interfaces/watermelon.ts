@@ -71,11 +71,11 @@ export class Watermelon {
     while (!this.status.isLive) {
       await this.locateRoom();
       if (!this.status.isLive) {
-        await sleep(register.interval.room * 10000);
+        await sleep(register.interval.refresh * 1000);
       }
     }
     setInterval(this.clock, 2000);
-    recursivelyRun(this.fetchRoom, register.interval.room * 10000).then();
+    recursivelyRun(this.fetchRoom, register.interval.room * 1000).then();
     recursivelyRun(this.fetchComment, register.interval.comment * 1000).then();
   }
 

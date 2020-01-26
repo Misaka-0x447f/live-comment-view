@@ -7,7 +7,7 @@
         <ng-info [chat]="v"></ng-info>
       </div>
     </div>
-    <div>
+    <div class="align-r">
       <div *ngFor="let v of worker.pool.giftTotalStream.slice(0, 3)">
         <span>{{i18n.comments.VideoLivePresentMessage(v.user.name, v.gift.count, v.gift.name)}}</span>
       </div>
