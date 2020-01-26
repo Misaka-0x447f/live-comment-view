@@ -9,7 +9,6 @@ import {ViewComponent} from "./view/view.component";
 import {InfoComponent} from "../components/info/info.component";
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {GiftComponent} from "../components/gift/gift.component";
 import {OfflineOverlayComponent} from "../components/offline-overlay/offline-overlay.component";
 import {ChatComponent} from "../components/chat/chat.component";
 import { NumberViewComponent } from "../components/number-view/number-view.component";
@@ -27,7 +26,6 @@ const routes: Routes = [
     DemoComponent,
     InfoComponent,
     ViewComponent,
-    GiftComponent,
     OfflineOverlayComponent,
     ChatComponent,
     NumberViewComponent,
