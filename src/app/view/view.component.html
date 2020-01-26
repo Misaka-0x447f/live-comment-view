@@ -1,9 +1,16 @@
 <ng-offline-overlay *ngIf="!worker.status.isLive" [worker]="worker"></ng-offline-overlay>
 <div class="container">
-  <ng-gift [worker]="worker"></ng-gift>
-  <div>
-    <div *ngFor="let v of worker.pool.other.slice(0, 3)">
-      <ng-info [chat]="v"></ng-info>
+  <ng-status [worker]="worker"></ng-status>
+  <div class="broadcasts" [@new]="'new'" *ngFor="let _ of [worker.stats.giftTotal]">
+    <div>
+      <div *ngFor="let v of worker.pool.other.slice(0, 3)">
+        <ng-info [chat]="v"></ng-info>
+      </div>
+    </div>
+    <div>
+      <div *ngFor="let v of worker.pool.giftTotalStream.slice(0, 3)">
+        <span>{{i18n.comments.VideoLivePresentMessage(v.user.name, v.gift.count, v.gift.name)}}</span>
+      </div>
     </div>
   </div>
   <div class="comment-box">

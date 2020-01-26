@@ -5,11 +5,25 @@ import {includeAll} from "../../utils/lang";
 import {Router} from "@angular/router";
 import i18n from "../../utils/i18n";
 import { defaultTo } from "lodash-es";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: "ng-view",
   templateUrl: "./view.component.html",
   styleUrls: ["./view.component.styl"],
+  animations: [
+    trigger("new", [
+      state("new", style({
+        background: "rgba(192,255,0,0)",
+      })),
+      transition(":enter", [
+        style({
+          background: "rgba(192,255,0,0.6)",
+        }),
+        animate(2000),
+      ]),
+    ]),
+  ],
 })
 export class ViewComponent implements OnInit {
   private worker: Watermelon;

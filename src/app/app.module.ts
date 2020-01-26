@@ -6,13 +6,14 @@ import {AppComponent} from "./app.component";
 import {DemoComponent} from "./demo/demo.component";
 import {ViewComponent} from "./view/view.component";
 
-import {InfoComponent} from "../component/info/info.component";
+import {InfoComponent} from "../components/info/info.component";
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {GiftComponent} from "../component/gift/gift.component";
-import {OfflineOverlayComponent} from "../component/offline-overlay/offline-overlay.component";
-import {ChatComponent} from "../component/chat/chat.component";
-import { NumberViewComponent } from "../component/number-view/number-view.component";
+import {GiftComponent} from "../components/gift/gift.component";
+import {OfflineOverlayComponent} from "../components/offline-overlay/offline-overlay.component";
+import {ChatComponent} from "../components/chat/chat.component";
+import { NumberViewComponent } from "../components/number-view/number-view.component";
+import { StatusComponent } from "../components/status/status.component";
 
 const routes: Routes = [
   {path: "view", component: ViewComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
     OfflineOverlayComponent,
     ChatComponent,
     NumberViewComponent,
+    StatusComponent,
   ],
   imports: [
     BrowserModule,
