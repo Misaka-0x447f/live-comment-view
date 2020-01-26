@@ -6,8 +6,7 @@
     "start": "node scripts/serve-built.js",
     "build": "ng build",
     "serve": "node scripts/serve.js",
-    "lint": "ng lint",
-    "postinstall": "node scripts/postinstall.js"
+    "lint": "ng lint"
   },
   "private": true,
   "license": "UNLICENSED",
