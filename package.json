@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "cors-anywhere": "^0.4.1",
+    "es6-shim": "^0.35.5",
     "execa": "^4.0.0",
     "express": "latest",
     "google-tts-api": "^0.0.4",
