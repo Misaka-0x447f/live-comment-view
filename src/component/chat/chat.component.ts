@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import { Component, Input, OnInit } from "@angular/core";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: "ng-chat",
@@ -23,6 +23,10 @@ export class ChatComponent implements OnInit {
   @Input() private breadcrumb: string;
   @Input() private badge: string;
   @Input() private content: string;
+
+  get filteredUserName() {
+    return this.breadcrumb.replace(new RegExp("用户\\d{8,13}"), "用户");
+  }
 
   constructor() {
   }
