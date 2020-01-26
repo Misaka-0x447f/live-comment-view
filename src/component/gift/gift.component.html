@@ -3,7 +3,7 @@
     <div class="data">
       <ng-number-view [label]="i18n.common.labels.current" [number]="worker.status.room.activeUserCount"></ng-number-view>
       <ng-number-view [label]="i18n.common.labels.average" [number]="worker.stats.avgActiveUser"></ng-number-view>
-      <ng-number-view [label]="i18n.common.labels.subscribed" *ngIf="worker.status.room.followerInfo" [number]="worker.status.room.followerInfo.count"></ng-number-view>
+      <ng-number-view [label]="worker.config.badge" *ngIf="worker.status.room.followerInfo" [number]="worker.status.room.followerInfo.count"></ng-number-view>
     </div>
     <div class="data">
       <ng-number-view [right]="true" [label]="i18n.common.priceUnit" [number]="numberCompact(worker.stats.giftTotal / 100)"></ng-number-view>

@@ -1,9 +1,13 @@
 ## live-comment-view
+require node > v13  
 install dependencies first:
 ```bash
 yarn
 ```
-run:
+run this will check update and run:
 ```bash
-yarn add
+yarn start
 ```
+
+## example params
+```http://localhost:4200/view?streamer=宝蓝狼badge=狼```

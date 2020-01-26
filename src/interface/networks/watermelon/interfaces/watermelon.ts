@@ -55,6 +55,7 @@ export class Watermelon {
   };
   public config: {
     streamer: string,
+    badge?: string,
   };
   public raw: {
     room?: object,

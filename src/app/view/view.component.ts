@@ -4,6 +4,7 @@ import {getParams} from "../../utils/dom";
 import {includeAll} from "../../utils/lang";
 import {Router} from "@angular/router";
 import i18n from "../../utils/i18n";
+import { defaultTo } from "lodash-es";
 
 @Component({
   selector: "ng-view",
@@ -12,7 +13,7 @@ import i18n from "../../utils/i18n";
 })
 export class ViewComponent implements OnInit {
   private worker: Watermelon;
-  private params: Partial<Record<"streamer", string>> = getParams();
+  private params: Partial<Record<"streamer" | "badge", string>> = getParams();
 
   private i18n = i18n;
 
@@ -22,6 +23,7 @@ export class ViewComponent implements OnInit {
     }
     this.worker = new Watermelon({
       streamer: this.params.streamer,
+      badge: defaultTo(this.params.badge, i18n.common.labels.subscribed),
     });
   }
 
