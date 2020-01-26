@@ -1,13 +1,13 @@
-import {fetchGiftList, fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
-import {assert} from "../../../../utils/assert";
-import {forIn, get, isNull, isUndefined, omit} from "lodash-es";
-import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
-import {toUser} from "../util/user";
-import {ChatMethods, extraApis} from "../util/type";
-import {Await} from "../../../../utils/typescript";
-import {isIterable} from "rxjs/internal-compatibility";
-import {register} from "../register";
-import {ec} from "../../../../utils/event";
+import { fetchGiftList, fetchLiveComment, fetchLocateRoom, fetchRoomInfo } from "./network";
+import { assert } from "../../../../utils/assert";
+import { forIn, get, isNull, isUndefined, omit } from "lodash-es";
+import { recursivelyRun, selectCase, sleep } from "../../../../utils/lang";
+import { toUser } from "../util/user";
+import { ChatMethods, extraApis } from "../util/type";
+import { Await } from "../../../../utils/typescript";
+import { isIterable } from "rxjs/internal-compatibility";
+import { register } from "../register";
+import { ec } from "../../../../utils/event";
 
 export class Watermelon {
   public status: {
@@ -19,6 +19,10 @@ export class Watermelon {
       title?: string
       streamer?: ReturnType<typeof toUser>
       activeUserCount: number,
+      followerInfo?: {
+        title: string,
+        count: number,
+      },
     }
     offset: number,
     giftList?: Array<{
@@ -95,6 +99,17 @@ export class Watermelon {
           streamer: toUser(d),
           title: d.room.title,
           activeUserCount: parseInt(d.room.user_count, 10),
+          ...(() => {
+            if (!d.room.discipulus_info) {
+              return {};
+            }
+            return {
+              followerInfo: {
+                title: d.room.discipulus_info.discipulus_title,
+                count: d.room.discipulus_info.follower_count,
+              },
+            };
+          })(),
         },
       },
     };
@@ -104,7 +119,7 @@ export class Watermelon {
     if (!this.status.lastRoomFetch) {
       await this.fetchRoom();
     }
-    const d = await fetchLiveComment(this.status.room.id, {offset: this.status.offset});
+    const d = await fetchLiveComment(this.status.room.id, { offset: this.status.offset });
     try {
       assert.notNil([d.data, d.extra, get(d, "extra.cursor")], "unexpected data");
     } catch {

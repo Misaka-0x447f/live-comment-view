@@ -1,12 +1,13 @@
 <div class="container">
   <div *ngFor="let _ of [worker.stats.giftTotal]" [@new]="'new'" class="status">
     <div class="data">
-      <ng-number-view label="cur" [number]="worker.status.room.activeUserCount"></ng-number-view>
-      <ng-number-view label="avg" [number]="worker.stats.avgActiveUser"></ng-number-view>
+      <ng-number-view [label]="i18n.common.labels.current" [number]="worker.status.room.activeUserCount"></ng-number-view>
+      <ng-number-view [label]="i18n.common.labels.average" [number]="worker.stats.avgActiveUser"></ng-number-view>
+      <ng-number-view [label]="i18n.common.labels.subscribed" *ngIf="worker.status.room.followerInfo" [number]="worker.status.room.followerInfo.count"></ng-number-view>
     </div>
     <div class="price">
       <span class="unit">{{i18n.common.priceUnit}}</span>
-      <span>{{worker.stats.giftTotal / 100}}</span>
+      <span>{{numberCompact(worker.stats.giftTotal / 100)}}</span>
     </div>
   </div>
   <div class="list">

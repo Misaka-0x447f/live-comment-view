@@ -1,7 +1,8 @@
 /**
  * alternative to native switch statement
  */
-import {isArray, isNull, isUndefined} from "lodash-es";
+import { isArray, isNull, isUndefined } from "lodash-es";
+import i18n from "./i18n";
 
 export const selectCase =
   <T>(opt: { exp: T, def?: () => any, case: Array<[T] | [T, () => any] | [T[]] | [T[], () => any]> }) => {
@@ -20,11 +21,6 @@ export const selectCase =
     }
     return;
   };
-
-type anyFunc = (...args: any[]) => any;
-
-export const nop: anyFunc = () => undefined;
-export const bypass: anyFunc = (...args) => args.length === 1 ? args[0] : args;
 
 export const recursivelyRun = async (method: (...args: any[]) => Promise<any>, interval: number) => {
   try {
@@ -62,4 +58,20 @@ export const includeAll = (target: object, propertyKeys: PropertyKey[]) => {
     }
   }
   return true;
+};
+
+export const numberCompact = (num: number) => {
+  if (num < 1000) {
+    return num;
+  }
+  let cur = 0;
+  let curNum = num;
+  while (curNum >= 1000) {
+    cur++;
+    curNum /= 1000;
+  }
+  if (cur >= i18n.common.units.length) {
+    return num;
+  }
+  return curNum.toPrecision(3).toString().concat(i18n.common.units[cur]);
 };

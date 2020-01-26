@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {Watermelon} from "../../interface/networks/watermelon/interfaces/watermelon";
 import i18n from "../../utils/i18n";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import numeral from "numeral";
+import { numberCompact } from "src/utils/lang";
 
 @Component({
   selector: "ng-gift",
@@ -26,7 +26,7 @@ import numeral from "numeral";
 export class GiftComponent implements OnInit {
   @Input() private worker: Watermelon;
   private i18n = i18n;
-  private numeral = numeral;
+  private numberCompact = numberCompact;
 
   constructor() {
   }

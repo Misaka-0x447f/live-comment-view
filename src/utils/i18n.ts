@@ -1,5 +1,3 @@
-import {nop} from "./lang";
-
 const d = (c, r?) => c ? (r ? r : c) : "";
 
 export const i18n = {
@@ -7,14 +5,20 @@ export const i18n = {
     priceUnit: "CN¥",
     connecting: "正在尝试连接 $1",
     retrying: "正在重新连接 $1",
+    units: ["", "k", "M", "B"],
+    labels: {
+      current: "当前",
+      average: "均值",
+      subscribed: "订户",
+    },
   },
   room: {
     streamer: "🔑",
     operator: "🔧",
   },
   comments: {
-    VideoLiveNoticeMessage: nop,
-    VideoLiveRoomAdMessage: nop,
+    VideoLiveNoticeMessage: () => "",
+    VideoLiveRoomAdMessage: () => "",
     breadcrumb: (u, p?) => `${d(p)} ${u}`,
     badge: (l?, b?) => `${d(l)} ${d(b)}`,
     VideoLivePresentMessage: (u, c, n) => `${u} 赠送 ${c} 个 ${n}`,

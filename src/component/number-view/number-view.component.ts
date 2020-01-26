@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import numeral from "numeral";
+import { numberCompact } from "../../utils/lang";
 
 @Component({
   selector: "ng-number-view",
@@ -9,7 +9,7 @@ import numeral from "numeral";
 export class NumberViewComponent implements OnInit {
   @Input() private label: string;
   @Input() private number: number;
-  private numeral = numeral;
+  private numberCompact = numberCompact;
   constructor() {
   }
 
