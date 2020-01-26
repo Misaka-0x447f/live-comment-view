@@ -1,11 +1,23 @@
 .number {
   margin-right: 0.6em;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  line-height: 0.8em;
 }
 
 .label {
   font-size: 0.5em;
-  margin-left: 0.3em;
-  padding-bottom: 0.3em;
+  margin-left: 0.1em;
+}
+
+.number.right {
+  align-items: flex-end;
+  margin-left: 0.6em;
+  margin-right: 0;
+}
+
+.number.right > .label {
+  margin-left: 0;
+  margin-right: 0.1em;
 }

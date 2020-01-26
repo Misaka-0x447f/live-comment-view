@@ -5,9 +5,8 @@
       <ng-number-view [label]="i18n.common.labels.average" [number]="worker.stats.avgActiveUser"></ng-number-view>
       <ng-number-view [label]="i18n.common.labels.subscribed" *ngIf="worker.status.room.followerInfo" [number]="worker.status.room.followerInfo.count"></ng-number-view>
     </div>
-    <div class="price">
-      <span class="unit">{{i18n.common.priceUnit}}</span>
-      <span>{{numberCompact(worker.stats.giftTotal / 100)}}</span>
+    <div class="data">
+      <ng-number-view [right]="true" [label]="i18n.common.priceUnit" [number]="numberCompact(worker.stats.giftTotal / 100)"></ng-number-view>
     </div>
   </div>
   <div class="list">

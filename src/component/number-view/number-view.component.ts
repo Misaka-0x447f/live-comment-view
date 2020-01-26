@@ -9,6 +9,7 @@ import { numberCompact } from "../../utils/lang";
 export class NumberViewComponent implements OnInit {
   @Input() private label: string;
   @Input() private number: number;
+  @Input() private right: boolean;
   private numberCompact = numberCompact;
   constructor() {
   }
