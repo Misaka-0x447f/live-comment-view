@@ -23,6 +23,7 @@ export class ChatComponent implements OnInit {
   @Input() private breadcrumb: string;
   @Input() private badge: string;
   @Input() private content: string;
+  @Input() private isSubscriber: boolean;
 
   get filteredUserName() {
     return this.breadcrumb.replace(new RegExp("用户\\d{8,13}"), "用户");

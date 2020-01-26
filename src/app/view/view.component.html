@@ -11,6 +11,7 @@
       <ng-chat [badge]="i18n.comments.badge(v.user.level, v.user.brand)"
                [breadcrumb]="i18n.comments.breadcrumb(v.user.name, v.user.prefix)"
                [content]="v.content"
+               [isSubscriber]="v.user.brand === worker.status.room.followerInfo.title"
       ></ng-chat>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<div [@construct]="'final'" class="container">
+<div class="container" [ngClass]="{isSubscriber: isSubscriber}">
   <span class="content">{{content}}</span>
   <span class="breadcrumb">{{filteredUserName}}</span>
 </div>
