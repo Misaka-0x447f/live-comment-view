@@ -2,7 +2,6 @@ import "es6-shim";
 import "reflect-metadata";
 import path from "path";
 import bodyParser from "body-parser";
-import moment from "moment";
 
 import express from "express";
 import execa from "execa";
@@ -100,11 +99,11 @@ const gitPull = () => {
 
       // Catch errors
       this.app.on("error", (error) => {
-        console.error(moment().format(), "ERROR", error);
+        console.error("ERROR", error);
       });
 
       process.on("uncaughtException", (error) => {
-        console.log(moment().format(), error);
+        console.log(error);
       });
     }
 
