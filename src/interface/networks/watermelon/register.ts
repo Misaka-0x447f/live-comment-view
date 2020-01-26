@@ -6,8 +6,13 @@ export const register = {
     comment: 2,
     refresh: 10,
   },
-  filter: [
+  filterChat: [
     /^\d*$/,
     /挂/,
+    /太菜了/,
+    /不会玩/,
   ],
+  filterUserName: [
+    [/用户\d{8,16}/, "用户"],
+  ] as Array<[RegExp, string]>,
 };

@@ -253,7 +253,7 @@ export class Watermelon {
       method: this.typeOf(d),
       user: toUser(d),
       content: content as string,
-      isFiltered: register.filter.some((v) => !isNull(v.exec(content))),
+      isFiltered: register.filterChat.some((v) => !isNull(v.exec(content))),
     };
   }
 

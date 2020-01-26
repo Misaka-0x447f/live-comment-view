@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
+import { register } from "../../interface/networks/watermelon/register";
 
 @Component({
   selector: "ng-chat",
@@ -26,7 +27,11 @@ export class ChatComponent implements OnInit {
   @Input() private isSubscriber: boolean;
 
   get filteredUserName() {
-    return this.breadcrumb.replace(new RegExp("用户\\d{8,13}"), "用户");
+    const s = this.breadcrumb;
+    for (const value of register.filterUserName) {
+      s.replace(value[0], value[1]);
+    }
+    return s;
   }
 
   constructor() {
