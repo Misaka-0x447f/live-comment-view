@@ -11,7 +11,7 @@ export const register = {
     /太菜了/,
   ],
   replaceChat: [
-    [/(.{12}).+/, (_, p1) => p1],
+    [/(.{12}).+/, (_, p1) => p1.concat("...")],
   ] as Array<Parameters<string["replace"]>>,
   replaceUsername: [
     [/^(\W{2,})\d{4,}/, (_, p1) => p1],
