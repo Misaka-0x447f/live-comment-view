@@ -27,9 +27,9 @@ export class ChatComponent implements OnInit {
   @Input() private isSubscriber: boolean;
 
   get filteredUserName() {
-    const s = this.breadcrumb;
-    for (const value of register.filterUserName) {
-      s.replace(value[0], value[1]);
+    let s = this.breadcrumb;
+    for (const value of register.replaceUsername) {
+      s = s.replace(value[0], value[1]);
     }
     return s;
   }

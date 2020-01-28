@@ -1,4 +1,5 @@
-<div [@construct]="'final'">
+<div>
+  <!--suppress TypeScriptValidateTypes -->
   <div *ngIf="!isNil(i18n.comments[message.type]); else noMatch">
     {{i18n.comments[message.type](message.user, message.text)}}
   </div>

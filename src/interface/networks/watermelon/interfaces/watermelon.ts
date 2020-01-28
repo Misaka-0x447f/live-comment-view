@@ -247,13 +247,18 @@ export class Watermelon {
   }
 
   private toChat = (d: unknown) => {
-    const content = get(d, "extra.content");
+    let content = get(d, "extra.content") as string;
+    for (const v of register.replaceChat) {
+      content = content.replace(v[0], v[1]);
+    }
     return {
       timestamp: new Date().getTime(),
       method: this.typeOf(d),
       user: toUser(d),
-      content: content as string,
-      isFiltered: register.filterChat.some((v) => !isNull(v.exec(content))),
+      content,
+      isFiltered: register.filterChat.some((v) => {
+        return !isNull(v.exec(content));
+      }),
     };
   }
 

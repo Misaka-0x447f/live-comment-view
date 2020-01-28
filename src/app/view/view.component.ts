@@ -23,6 +23,17 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
         animate(2000),
       ]),
     ]),
+    trigger("newComment", [
+      state("newComment", style({
+        background: "transparent",
+      })),
+      transition(":enter", [
+        style({
+          background: "rgba(255, 255, 255, 0.6)",
+        }),
+        animate("300ms 600ms ease-out"),
+      ]),
+    ]),
   ],
 })
 export class ViewComponent implements OnInit {
