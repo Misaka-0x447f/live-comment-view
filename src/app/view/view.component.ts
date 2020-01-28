@@ -20,7 +20,7 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
         style({
           background: "rgba(192,255,0,0.6)",
         }),
-        animate(2000),
+        animate("300ms 1200ms ease-out"),
       ]),
     ]),
     trigger("newComment", [
