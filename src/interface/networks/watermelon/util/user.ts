@@ -1,5 +1,6 @@
 import i18n from "../../../../utils/i18n";
-import {selectCase} from "../../../../utils/lang";
+import { selectCase } from "../../../../utils/lang";
+import { register } from "../register";
 
 export const toUser = (d: any) => {
   let r: Partial<{
@@ -60,6 +61,10 @@ export const toUser = (d: any) => {
         [3, () => i18n.room.streamer],
       ],
     });
+  }
+
+  for (const v of register.replaceUsername) {
+    r.name = r.name.replace(v[0], v[1]);
   }
 
   return r;
