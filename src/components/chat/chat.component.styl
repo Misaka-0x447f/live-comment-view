@@ -18,7 +18,7 @@
 }
 
 .container {
-  opacity: 0.5;
+  opacity: 0.7;
   color: #ccc;
 }
 
@@ -29,5 +29,23 @@
 
 .container.isGift {
   color: rgb(192,255,0);
+  animation: 2s lgbt;
+  animation-fill-mode: none;
+  animation-iteration-count: 2;
   opacity: 1;
+}
+
+@keyframes lgbt {
+  from { color: #00e428}
+  16% { color: #00e428 }
+  16% { color: #3d91ff }
+  33% { color: #3d91ff }
+  33% { color: #ffff41 }
+  50% { color: #ffff41 }
+  50% { color: #ff5050 }
+  66% { color: #ff5050 }
+  66% { color: #ff00ff }
+  83% { color: #ff00ff }
+  83% { color: #ffa52c }
+  to { color: #ffa52c }
 }
