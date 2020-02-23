@@ -1,13 +1,13 @@
-import { fetchGiftList, fetchLiveComment, fetchLocateRoom, fetchRoomInfo } from "./network";
-import { assert } from "../../../../utils/assert";
-import { forIn, get, isNull, isUndefined, omit } from "lodash-es";
-import { recursivelyRun, selectCase, sleep } from "../../../../utils/lang";
-import { toUser } from "../util/user";
-import { ChatMethods, extraApis } from "../util/type";
-import { Await } from "../../../../utils/typescript";
-import { isIterable } from "rxjs/internal-compatibility";
-import { register } from "../register";
-import { ec } from "../../../../utils/event";
+import {fetchGiftList, fetchLiveComment, fetchLocateRoom, fetchRoomInfo} from "./network";
+import {assert} from "../../../../utils/assert";
+import {forIn, get, isNull, isUndefined, omit} from "lodash-es";
+import {recursivelyRun, selectCase, sleep} from "../../../../utils/lang";
+import {toUser} from "../util/user";
+import {ChatMethods, extraApis} from "../util/type";
+import {Await} from "../../../../utils/typescript";
+import {isIterable} from "rxjs/internal-compatibility";
+import {register} from "../register";
+import {ec} from "../../../../utils/event";
 
 export class Watermelon {
   public status: {
@@ -43,6 +43,10 @@ export class Watermelon {
     giftHistory: {} as { [groupId: string]: Omit<Await<ReturnType<Watermelon["toGift"]>>, "groupId"> },
     giftStream: [] as Array<Await<ReturnType<Watermelon["toGift"]>>>,
     giftTotalStream: [] as Array<Await<ReturnType<Watermelon["toGift"]>>>,
+    commentAndGift: [] as Array<{
+      type: "chat" | "gift", content:
+        Await<ReturnType<Watermelon["toGift"]>> | ReturnType<Watermelon["toChat"]>,
+    }>,
     other: [] as Array<ReturnType<Watermelon["toChat"]>>,
   };
   /**
@@ -120,7 +124,7 @@ export class Watermelon {
     if (!this.status.lastRoomFetch) {
       await this.fetchRoom();
     }
-    const d = await fetchLiveComment(this.status.room.id, { offset: this.status.offset });
+    const d = await fetchLiveComment(this.status.room.id, {offset: this.status.offset});
     try {
       assert.notNil([d.data, d.extra, get(d, "extra.cursor")], "unexpected data");
     } catch {
@@ -143,6 +147,7 @@ export class Watermelon {
               const r = this.toChat(v);
               if (!r.isFiltered) {
                 this.pool.comment.unshift(this.toChat(v));
+                this.pool.commentAndGift.unshift({type: "chat", content: this.toChat(v)});
               }
             },
           ],
@@ -168,6 +173,7 @@ export class Watermelon {
               } else {
                 // giftTotalStream
                 this.pool.giftTotalStream.unshift(await this.toGift(v));
+                this.pool.commentAndGift.unshift({type: "gift", content: await this.toGift(v)});
                 ec.emit("presentEnd", await this.toGift(v));
               }
             },

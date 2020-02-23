@@ -14,11 +14,10 @@
     </div>
   </div>
   <div class="comment-box">
-    <div *ngFor="let v of worker.pool.comment.slice(0, 300)" [@newComment]="'newComment'">
-      <ng-chat [badge]="i18n.comments.badge(v.user.level, v.user.brand)"
-               [breadcrumb]="i18n.comments.breadcrumb(v.user.name, v.user.prefix)"
-               [content]="v.content"
-               [isSubscriber]="v.user.brand === worker.status.room.followerInfo.title"
+    <div *ngFor="let v of worker.pool.commentAndGift.slice(0, 300)" [@newComment]="'newComment'">
+      <ng-chat
+               [iterate]="v"
+               [worker]="worker"
       ></ng-chat>
     </div>
   </div>

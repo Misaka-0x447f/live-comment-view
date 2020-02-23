@@ -3,7 +3,6 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 
 import {AppComponent} from "./app.component";
-import {DemoComponent} from "./demo/demo.component";
 import {ViewComponent} from "./view/view.component";
 
 import {InfoComponent} from "../components/info/info.component";
@@ -16,14 +15,12 @@ import { StatusComponent } from "../components/status/status.component";
 
 const routes: Routes = [
   {path: "view", component: ViewComponent},
-  {path: "demo", component: DemoComponent},
   {path: "**", redirectTo: "/view?streamer=宝蓝狼"},
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent,
     InfoComponent,
     ViewComponent,
     OfflineOverlayComponent,

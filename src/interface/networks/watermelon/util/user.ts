@@ -1,6 +1,6 @@
 import i18n from "../../../../utils/i18n";
-import { selectCase } from "../../../../utils/lang";
-import { register } from "../register";
+import {selectCase} from "../../../../utils/lang";
+import {register} from "../register";
 
 export const toUser = (d: any) => {
   let r: Partial<{
@@ -21,6 +21,10 @@ export const toUser = (d: any) => {
       name: obj.name,
     };
   };
+
+  if (!r.name) {
+    r.name = "";
+  }
 
   if (d.extra) {
     if (d.extra.user) {

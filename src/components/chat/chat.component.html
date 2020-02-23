@@ -1,4 +1,9 @@
-<div class="container" [ngClass]="{isSubscriber: isSubscriber}">
-  <span class="content">{{content}}</span>
-  <span class="breadcrumb">{{breadcrumb}}</span>
+<div class="container" [ngClass]="{isSubscriber: isSubscriber, isGift: iterate.type === 'gift'}">
+  <ng-container *ngIf="iterate.type === 'chat'">
+    <span class="content">{{iterate.content.content}}</span>
+    <span class="breadcrumb">{{iterate.content.user.name}}</span>
+  </ng-container>
+  <ng-container *ngIf="iterate.type === 'gift'">
+    <span>{{i18n.comments.VideoLivePresentMessage(iterate.content.user.name, iterate.content.gift.count, iterate.content.gift.name)}}</span>
+  </ng-container>
 </div>
