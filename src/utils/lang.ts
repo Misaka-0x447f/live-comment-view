@@ -60,12 +60,12 @@ export const includeAll = (target: object, propertyKeys: PropertyKey[]) => {
   return true;
 };
 
-export const numberCompact = (num: number) => {
-  if (num < 1) {
+export const numberCompact = (num: string) => {
+  if (parseFloat(num) < 1) {
     return num;
   }
   let cur = 0;
-  let curNum = num;
+  let curNum = parseFloat(num);
   while (curNum >= 1000) {
     cur++;
     curNum /= 1000;
