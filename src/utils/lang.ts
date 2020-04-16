@@ -61,7 +61,7 @@ export const includeAll = (target: object, propertyKeys: PropertyKey[]) => {
 };
 
 export const numberCompact = (num: number) => {
-  if (num < 1000) {
+  if (num < 1) {
     return num;
   }
   let cur = 0;
