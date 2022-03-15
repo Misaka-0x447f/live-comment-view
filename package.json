@@ -29,7 +29,7 @@
     "execa": "^4.0.0",
     "express": "latest",
     "ky": "^0.16.1",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "rxjs": "~6.5.3",
     "zone.js": "~0.10.2"
   },
