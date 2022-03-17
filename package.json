@@ -40,7 +40,7 @@
     "@angular/language-service": "~8.2.14",
     "@types/lodash-es": "^4.17.3",
     "@types/node": "~12.12.21",
-    "simple-git": "^1.130.0",
+    "simple-git": "^3.3.0",
     "tslint": "~5.20.1",
     "typescript": "<3.6.0"
   }
